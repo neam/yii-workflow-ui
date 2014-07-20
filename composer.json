@@ -1,0 +1,37 @@
+{
+    "name": "neam/yii-workflow-ui",
+    "description": "todo",
+    "keywords": ["yii"],
+    "homepage": "https://github.com/neam/yii-item",
+    "type": "yii-extension",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Fredrik Wollsén",
+            "email": "fredrik@neam.se"
+        }
+    ],
+    "repositories": [
+        {
+            "type": "composer",
+            "url": "http://packages.phundament.com"
+        },
+        {
+            "type": "vcs",
+            "url": "https://github.com/neam/yii-qa-state"
+        }
+    ],
+    "autoload": {
+        "classmap": ["traits/"]
+    },
+    "require": {
+        "php": ">=5.4.0",
+        "crisu83/yiistrap-widgets": "1.7.*",
+        "crisu83/yiistrap": "dev-bs3 as 1.1.1",
+        "phundament/jquery-file-upload": "@dev",
+        "phundament/p3media": "dev-awaiting-prs",
+        "neam/yii-simplicity-theme": "dev-develop",
+        "neam/yii-workflow-core": "dev-develop",
+        "yiisoft/yii": ">=1.1.0"
+    }
+}
