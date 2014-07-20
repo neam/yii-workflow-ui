@@ -27,9 +27,9 @@
     "require": {
         "php": ">=5.4.0",
         "crisu83/yiistrap-widgets": "1.7.*",
-        "crisu83/yiistrap": "dev-bs3 as 1.1.1",
+        "crisu83/yiistrap": "dev-bs3",
         "phundament/jquery-file-upload": "@dev",
-        "phundament/p3media": "dev-awaiting-prs",
+        "phundament/p3media": "0.17.3",
         "neam/yii-simplicity-theme": "dev-develop",
         "neam/yii-workflow-core": "dev-develop",
         "yiisoft/yii": ">=1.1.0"
