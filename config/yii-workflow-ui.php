@@ -3,6 +3,7 @@
 $config['import'][] = 'vendor.neam.yii-workflow-ui.widgets.ItemEditUi';
 $config['import'][] = 'vendor.neam.yii-workflow-ui.components.AppActiveForm';
 $config['import'][] = 'vendor.neam.yii-workflow-ui.helpers.Html';
+$config['import'][] = 'vendor.neam.yii-workflow-ui.helpers.WorkflowUiControllerConstants';
 $config['import'][] = 'vendor.neam.yii-workflow-ui.traits.WorkflowUiControllerTrait';
 $config['import'][] = 'vendor.neam.yii-workflow-ui.components.WorkflowUi';
 

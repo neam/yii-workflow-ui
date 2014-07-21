@@ -1481,36 +1481,36 @@ trait WorkflowUiControllerTrait
         $breadcrumbs[$itemTitle] = array('view', 'id' => $model->id);
 
         switch ($this->action->id) {
-            case ItemControllerConstants::ACTION_EDIT:
-                $breadcrumbs[] = self::actionLabel(ItemControllerConstants::ACTION_EDIT);
+            case WorkflowUiControllerConstants::ACTION_EDIT:
+                $breadcrumbs[] = self::actionLabel(WorkflowUiControllerConstants::ACTION_EDIT);
                 break;
 
-            case ItemControllerConstants::ACTION_TRANSLATION_OVERVIEW:
-                $breadcrumbs[] = self::actionLabel(ItemControllerConstants::ACTION_TRANSLATION_OVERVIEW);
+            case WorkflowUiControllerConstants::ACTION_TRANSLATION_OVERVIEW:
+                $breadcrumbs[] = self::actionLabel(WorkflowUiControllerConstants::ACTION_TRANSLATION_OVERVIEW);
                 break;
 
-            case ItemControllerConstants::ACTION_TRANSLATE:
-                $breadcrumbs[] = self::actionLabel(ItemControllerConstants::ACTION_TRANSLATE);
+            case WorkflowUiControllerConstants::ACTION_TRANSLATE:
+                $breadcrumbs[] = self::actionLabel(WorkflowUiControllerConstants::ACTION_TRANSLATE);
                 break;
 
-            case ItemControllerConstants::ACTION_EVALUATE:
-                $breadcrumbs[] = self::actionLabel(ItemControllerConstants::ACTION_EVALUATE);
+            case WorkflowUiControllerConstants::ACTION_EVALUATE:
+                $breadcrumbs[] = self::actionLabel(WorkflowUiControllerConstants::ACTION_EVALUATE);
                 break;
 
-            case ItemControllerConstants::ACTION_PREPARE_FOR_REVIEW:
-                $breadcrumbs[] = self::actionLabel(ItemControllerConstants::ACTION_PREPARE_FOR_REVIEW);
+            case WorkflowUiControllerConstants::ACTION_PREPARE_FOR_REVIEW:
+                $breadcrumbs[] = self::actionLabel(WorkflowUiControllerConstants::ACTION_PREPARE_FOR_REVIEW);
                 break;
 
-            case ItemControllerConstants::ACTION_PREPARE_FOR_PUBLISHING:
-                $breadcrumbs[] = self::actionLabel(ItemControllerConstants::ACTION_PREPARE_FOR_PUBLISHING);
+            case WorkflowUiControllerConstants::ACTION_PREPARE_FOR_PUBLISHING:
+                $breadcrumbs[] = self::actionLabel(WorkflowUiControllerConstants::ACTION_PREPARE_FOR_PUBLISHING);
                 break;
 
-            case ItemControllerConstants::ACTION_PREVIEW:
-                $breadcrumbs[] = self::actionLabel(ItemControllerConstants::ACTION_PREVIEW);
+            case WorkflowUiControllerConstants::ACTION_PREVIEW:
+                $breadcrumbs[] = self::actionLabel(WorkflowUiControllerConstants::ACTION_PREVIEW);
                 break;
 
             default:
-                $breadcrumbs[] = self::actionLabel(ItemControllerConstants::ACTION_VIEW);
+                $breadcrumbs[] = self::actionLabel(WorkflowUiControllerConstants::ACTION_VIEW);
         }
 
         return $breadcrumbs;
@@ -1526,22 +1526,22 @@ trait WorkflowUiControllerTrait
         $defaultLabel = Yii::t('app', 'Action');
 
         $labels = array(
-            ItemControllerConstants::ACTION_BROWSE => Yii::t('app', 'Browse'),
-            ItemControllerConstants::ACTION_VIEW => Yii::t('app', 'View'),
-            ItemControllerConstants::ACTION_ADD => Yii::t('app', 'Add'),
-            ItemControllerConstants::ACTION_EDIT => Yii::t('app', 'Edit'),
-            ItemControllerConstants::ACTION_CLONE => Yii::t('app', 'Clone'),
-            ItemControllerConstants::ACTION_REMOVE => Yii::t('app', 'Remove'),
-            ItemControllerConstants::ACTION_PREVIEW => Yii::t('app', 'Preview'),
-            ItemControllerConstants::ACTION_TRANSLATE => Yii::t('app', 'Translate'),
-            ItemControllerConstants::ACTION_TRANSLATION_OVERVIEW => Yii::t('app', 'Translate'),
-            ItemControllerConstants::ACTION_EVALUATE => Yii::t('app', 'Evaluate'),
-            ItemControllerConstants::ACTION_PROOFREAD => Yii::t('app', 'Proofread'),
-            ItemControllerConstants::ACTION_APPROVE => Yii::t('app', 'Approve'),
-            ItemControllerConstants::ACTION_PUBLISH => Yii::t('app', 'Publish'),
-            ItemControllerConstants::ACTION_PREPARE_FOR_REVIEW => Yii::t('app', 'Prepare for Review'),
-            ItemControllerConstants::ACTION_PREPARE_FOR_PUBLISHING => Yii::t('app', 'Prepare for Publishing'),
-            ItemControllerConstants::ACTION_CANCEL => Yii::t('app', 'Cancel'),
+            WorkflowUiControllerConstants::ACTION_BROWSE => Yii::t('app', 'Browse'),
+            WorkflowUiControllerConstants::ACTION_VIEW => Yii::t('app', 'View'),
+            WorkflowUiControllerConstants::ACTION_ADD => Yii::t('app', 'Add'),
+            WorkflowUiControllerConstants::ACTION_EDIT => Yii::t('app', 'Edit'),
+            WorkflowUiControllerConstants::ACTION_CLONE => Yii::t('app', 'Clone'),
+            WorkflowUiControllerConstants::ACTION_REMOVE => Yii::t('app', 'Remove'),
+            WorkflowUiControllerConstants::ACTION_PREVIEW => Yii::t('app', 'Preview'),
+            WorkflowUiControllerConstants::ACTION_TRANSLATE => Yii::t('app', 'Translate'),
+            WorkflowUiControllerConstants::ACTION_TRANSLATION_OVERVIEW => Yii::t('app', 'Translate'),
+            WorkflowUiControllerConstants::ACTION_EVALUATE => Yii::t('app', 'Evaluate'),
+            WorkflowUiControllerConstants::ACTION_PROOFREAD => Yii::t('app', 'Proofread'),
+            WorkflowUiControllerConstants::ACTION_APPROVE => Yii::t('app', 'Approve'),
+            WorkflowUiControllerConstants::ACTION_PUBLISH => Yii::t('app', 'Publish'),
+            WorkflowUiControllerConstants::ACTION_PREPARE_FOR_REVIEW => Yii::t('app', 'Prepare for Review'),
+            WorkflowUiControllerConstants::ACTION_PREPARE_FOR_PUBLISHING => Yii::t('app', 'Prepare for Publishing'),
+            WorkflowUiControllerConstants::ACTION_CANCEL => Yii::t('app', 'Cancel'),
         );
 
         return array_key_exists($actionId, $labels) ? $labels[$actionId] : $defaultLabel;
