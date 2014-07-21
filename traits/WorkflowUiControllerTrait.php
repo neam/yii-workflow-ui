@@ -266,11 +266,6 @@ trait WorkflowUiControllerTrait
     {
         $translateInto = Yii::app()->request->getParam('translateInto');
 
-        // Redirect to next required step
-        if (($action->id === 'prepareForReview' || $action->id === 'prepareForPublishing') && isset($_POST['next-required-url'])) {
-            $this->redirect($_POST['next-required-url']);
-        }
-
         // Set translation and edit workflow returnUrls
         if (in_array($action->id, array('translate', 'edit'))) {
             $this->setWorkflowReturnUrl();
@@ -1320,9 +1315,7 @@ trait WorkflowUiControllerTrait
             $this->setBackToTranslationUrl();
 
             // redirect
-            if (isset(Yii::app()->user->returnUrl)) {
-                $this->redirect(Yii::app()->user->returnUrl);
-            } else if (isset($_REQUEST['returnUrl'])) {
+            if (isset($_REQUEST['returnUrl'])) {
                 $this->redirect($_REQUEST['returnUrl']);
             } else if (isset($_POST['save-changes'])) {
                 $this->redirect($_REQUEST['form-url']);
