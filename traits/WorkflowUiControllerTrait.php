@@ -1333,7 +1333,9 @@ trait WorkflowUiControllerTrait
      */
     public function showBackToTranslationButton()
     {
-        return Yii::app()->user->isTranslator && $this->getBackToTranslationUrl() !== '#';
+        // Inactivated until i18n module check is available
+        return false;
+        //return Yii::app()->user->isTranslator && $this->getBackToTranslationUrl() !== '#';
     }
 
     /**

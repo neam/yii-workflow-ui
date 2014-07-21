@@ -1,6 +1,6 @@
 <?php
 
-$config['import'][] = 'vendor.neam.yii-workflow-ui.widgets.ItemEditUi';
+$config['import'][] = 'vendor.neam.yii-workflow-ui.widgets.*';
 $config['import'][] = 'vendor.neam.yii-workflow-ui.components.AppActiveForm';
 $config['import'][] = 'vendor.neam.yii-workflow-ui.helpers.Html';
 $config['import'][] = 'vendor.neam.yii-workflow-ui.helpers.WorkflowUiControllerConstants';

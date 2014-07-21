@@ -6,7 +6,7 @@
 class ItemDetails extends CWidget
 {
     /**
-     * @var ActiveRecord
+     * @var CActiveRecord
      */
     public $model;
     /**
@@ -22,7 +22,7 @@ class ItemDetails extends CWidget
     {
         parent::init();
 
-        if (!$this->model instanceof ActiveRecord && in_array('ItemTrait', class_uses($this->model))) {
+        if (!$this->model instanceof CActiveRecord && in_array('ItemTrait', class_uses($this->model))) {
             throw new CException(Yii::t('error', 'Invalid class: {class}', array(
                 '{class}' => get_class($this->model),
             )));
@@ -35,7 +35,7 @@ class ItemDetails extends CWidget
     public function run()
     {
         parent::run();
-        $this->render('view');
+        $this->render('vendor.neam.yii-workflow-ui.themes.simplicity.views.ItemDetails.view');
     }
 
     /**
