@@ -47,6 +47,19 @@ class AppActiveForm extends TbActiveForm
     }
 
     /**
+     * Creates a multi text field control group for a translatable attribute.
+     * @param ActiveRecord|ItemTrait $model
+     * @param string $attribute
+     * @param string $translateInto
+     * @param string $controllerAction
+     * @return string
+     */
+    public function translateFileFieldControlGroup($model, $attribute, $translateInto, $controllerAction, $fieldOptions = array())
+    {
+        return $this->translateFieldControlGroup($model, $attribute, $translateInto, $controllerAction, TbHtml::INPUT_TYPE_FILE, $fieldOptions);
+    }
+
+    /**
      * Creates a multi textarea field control group for a translatable attribute.
      * @param ActiveRecord|ItemTrait $model
      * @param string $attribute
@@ -109,6 +122,11 @@ class AppActiveForm extends TbActiveForm
             'title',
             'question',
         );
+        /**
+         * For file type accept HTML5 attribute
+         */
+        if( !empty( $fieldOptions['accept'] )  )
+            $htmlOptions['accept'] = $fieldOptions['accept'].'/*';
 
         if ($controllerAction === self::CONTROLLER_ACTION_TRANSLATE) {
             // Auto-generate slug from title
