@@ -1,5 +1,5 @@
 <?php
-/* @var Controller|ItemController $this */
+/* @var Controller|WorkflowUiControllerTrait $this */
 /* @var ActiveRecord|ItemTrait $model */
 ?>
 <div class="item-header">

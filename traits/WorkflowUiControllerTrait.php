@@ -258,11 +258,11 @@ trait WorkflowUiControllerTrait
     }
 
     /**
-     * Runs operations before all ItemController actions.
+     * Runs operations before all WorkflowUiControllerTrait actions.
      * @param CAction $action
      * @return boolean
      */
-    public function beforeItemControllerAction($action)
+    public function beforeWorkflowUiControllerTraitAction($action)
     {
         $translateInto = Yii::app()->request->getParam('translateInto');
 
@@ -507,7 +507,7 @@ trait WorkflowUiControllerTrait
         $this->populateWorkflowData($model, 'reviewable', Yii::t('app', 'Prepare for Review'));
         $stepCaptions = $model->flowStepCaptions();
 
-        /** @var Controller|ItemController $this */
+        /** @var Controller|WorkflowUiControllerTrait $this */
         $this->buildBreadcrumbs($this->itemBreadcrumbs($model));
 
         $this->render(
@@ -562,7 +562,7 @@ trait WorkflowUiControllerTrait
         $stepCaptions = $model->flowStepCaptions();
         $this->_actionIsEvaluate = true;
 
-        /** @var Controller|ItemController $this */
+        /** @var Controller|WorkflowUiControllerTrait $this */
         $this->buildBreadcrumbs($this->itemBreadcrumbs($model));
 
         $this->render(
@@ -590,7 +590,7 @@ trait WorkflowUiControllerTrait
         $this->populateWorkflowData($model, 'publishable', Yii::t('app', 'Prepare for Publishing'));
         $stepCaptions = $model->flowStepCaptions();
 
-        /** @var Controller|ItemController $this */
+        /** @var Controller|WorkflowUiControllerTrait $this */
         $this->buildBreadcrumbs($this->itemBreadcrumbs($model));
 
         $this->render(
@@ -632,7 +632,7 @@ trait WorkflowUiControllerTrait
     {
         $model = $this->loadModel($id);
 
-        /** @var Controller|ItemController $this */
+        /** @var Controller|WorkflowUiControllerTrait $this */
         $this->buildBreadcrumbs($this->itemBreadcrumbs($model));
 
         $this->render('vendor.neam.yii-workflow-ui.themes.simplicity.views._item.preview', array('model' => $model, 'workflowCaption' => Yii::t('app', 'Preview')));
@@ -754,7 +754,7 @@ trait WorkflowUiControllerTrait
 
         $requiredCounts = $this->getRequiredCounts($id);
 
-        /** @var Controller|ItemController $this */
+        /** @var Controller|WorkflowUiControllerTrait $this */
         $this->buildBreadcrumbs($this->itemBreadcrumbs($model));
 
         $this->render('vendor.neam.yii-workflow-ui.themes.simplicity.views._item.edit', array(
@@ -1068,12 +1068,12 @@ trait WorkflowUiControllerTrait
         $model = $this->loadModel($id);
         $model->scenario = $this->scenario;
 
-        /** @var ItemController|Controller $this */
+        /** @var WorkflowUiControllerTrait|Controller $this */
         $this->requireProfileLanguages();
 
         $this->populateWorkflowData($model, null, Yii::t('app', ''));
 
-        /** @var Controller|ItemController $this */
+        /** @var Controller|WorkflowUiControllerTrait $this */
         $this->buildBreadcrumbs($this->itemBreadcrumbs($model));
 
         $this->render(
@@ -1105,7 +1105,7 @@ trait WorkflowUiControllerTrait
         )), $translateInto);
         $stepCaptions = $model->flowStepCaptions();
 
-        /** @var Controller|ItemController $this */
+        /** @var Controller|WorkflowUiControllerTrait $this */
         $this->buildBreadcrumbs($this->itemBreadcrumbs($model));
 
         $this->render(
