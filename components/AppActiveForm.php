@@ -97,8 +97,7 @@ class AppActiveForm extends TbActiveForm
      */
     public function translateFieldControlGroup($model, $attribute, $translateInto, $controllerAction, $inputType, $fieldOptions = array())
     {
-        //$attributeSourceLanguage = $attribute . '_' . $model->source_language;
-        $attributeSourceLanguage = $attribute;
+        $attributeSourceLanguage = $attribute . '_' . $model->source_language;
         $attributeTranslateInto = $attribute . '_' . $translateInto;
 
         // TODO: Add support for dynamic htmlOptions.
