@@ -56,7 +56,7 @@
                             </div>
                         </div>
                         <?php $this->render(
-                            '_step-progress',
+                            'vendor.neam.yii-workflow-ui.themes.simplicity.views.ItemEditUi._step-progress',
                             array(
                                 'currentStepNumber' => $this->getCurrentStepNumber(),
                                 'totalStepCount' => $this->getTotalStepCount(),
@@ -72,7 +72,7 @@
                     </div>
                     <div class="item-actions">
                         <?php $this->render(
-                            '_step-action-buttons',
+                            'vendor.neam.yii-workflow-ui.themes.simplicity.views.ItemEditUi._step-action-buttons',
                             array(
                                 'model' => $this->model,
                                 'form' => $this->form,
