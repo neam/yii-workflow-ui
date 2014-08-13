@@ -2,9 +2,9 @@
     "name": "neam/yii-workflow-ui",
     "description": "todo",
     "keywords": ["yii"],
-    "homepage": "https://github.com/neam/yii-item",
+    "homepage": "https://github.com/neam/yii-workflow-ui",
     "type": "yii-extension",
-    "license": "MIT",
+    "license": "BSD-3-Clause",
     "authors": [
         {
             "name": "Fredrik Wollsén",
@@ -22,7 +22,7 @@
         }
     ],
     "autoload": {
-        "classmap": ["traits/"]
+        "classmap": ["components/", "helpers/", "traits/", "widgets/"]
     },
     "require": {
         "php": ">=5.4.0",

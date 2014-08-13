@@ -1,5 +1,5 @@
 <?php
-/* @var Controller|ItemController $this */
+/* @var Controller|WorkflowUiControllerTrait $this */
 /* @var ActiveRecord|ItemTrait|QaStateBehavior $data */
 ?>
 <div class="list-item" id="<?php echo Html::generateActiveId($data, 'title'); ?>">
@@ -57,7 +57,7 @@
             <?php endif; ?>
         </div>
         <div class="item-actions">
-            <?php $this->renderPartial('/_item/elements/_action-buttons', array('model' => $data)); ?>
+            <?php $this->renderPartial('vendor.neam.yii-workflow-ui.themes.simplicity.views._item.elements/_action-buttons', array('model' => $data)); ?>
         </div>
     </div>
 </div>

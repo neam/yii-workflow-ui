@@ -1,6 +1,6 @@
 <?php // TODO: Refactor this view. ?>
 <?php
-/** @var ItemController|Controller $this */
+/** @var WorkflowUiControllerTrait|Controller $this */
 /** @var ItemTrait|ActiveRecord $model */
 ?>
 <?php $this->setPageTitle(
@@ -10,7 +10,7 @@
 ); ?>
 <div class="<?php echo $this->getCssClasses($model); ?>">
     <?php $this->renderPartial(
-        '/_item/elements/_flowbar',
+        'vendor.neam.yii-workflow-ui.themes.simplicity.views._item.elements/_flowbar',
         compact('model', 'workflowCaption', 'form')
     ); ?>
     <div class="after-flowbar">

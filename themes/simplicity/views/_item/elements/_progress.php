@@ -10,7 +10,7 @@ $stepCaptions = $model->flowStepCaptions();
 
 die("NOT USED");
 foreach ($this->workflowData["stepActions"] as $action) {
-    $this->renderPartial("/_item/elements/_progress-item", $action);
+    $this->renderPartial("vendor.neam.yii-workflow-ui.themes.simplicity.views._item.elements/_progress-item", $action);
 }
 
 ?>

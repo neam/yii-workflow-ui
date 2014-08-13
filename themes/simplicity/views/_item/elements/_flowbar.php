@@ -1,5 +1,5 @@
 <?php
-/* @var Controller|ItemController $this */
+/* @var Controller|WorkflowUiControllerTrait $this */
 /* @var ActiveRecord|ItemTrait $model */
 /* @var AppActiveForm $form */
 /* @var array $requiredCounts */
@@ -28,16 +28,16 @@
     </div>
     <div class="flowbar-content">
         <?php if ($this->actionUsesEditWorkflow()): ?>
-            <?php $this->renderPartial('/_item/elements/_action-buttons', compact('model')); ?>
+            <?php $this->renderPartial('vendor.neam.yii-workflow-ui.themes.simplicity.views._item.elements/_action-buttons', compact('model')); ?>
         <?php else: ?>
-            <?php $this->renderPartial('/_item/elements/_required-workflow', compact('model')); ?>
+            <?php $this->renderPartial('vendor.neam.yii-workflow-ui.themes.simplicity.views._item.elements/_required-workflow', compact('model')); ?>
         <?php endif; ?>
     </div>
     <div class="flowbar-foot">
         <div class="foot-text">
             <?php
             // TODO: Ensure $requireCounts is always passed to this view.
-            $this->renderPartial('/_item/elements/_required-counts', compact('model', 'requiredCounts'));
+            $this->renderPartial('vendor.neam.yii-workflow-ui.themes.simplicity.views._item.elements/_required-counts', compact('model', 'requiredCounts'));
             ?>
         </div>
         <div class="foot-actions">

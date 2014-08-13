@@ -45,7 +45,7 @@
     <?php endif; ?>
     <?php /*
     <input type="hidden" name="form-url" value="<?php echo CHtml::encode(Yii::app()->request->url); ?>"/>
-    <?php $this->renderPartial('/_item/edit/_flowbar', compact('model')); ?>
+    <?php $this->renderPartial('vendor.neam.yii-workflow-ui.themes.simplicity.views._item.edit/_flowbar', compact('model')); ?>
     <div class="after-flowbar">
         <div class="alerts">
             <div class="alerts-content">
@@ -55,12 +55,12 @@
         <div class="item-content">
             <div class="item-progress">
                 <?php foreach ($this->controller->workflowData["stepActions"] as $action): ?>
-                    <?php $this->renderPartial("/_item/edit/_progress-item", $action); ?>
+                    <?php $this->renderPartial("vendor.neam.yii-workflow-ui.themes.simplicity.views._item.edit/_progress-item", $action); ?>
                 <?php endforeach; ?>
                 // todo: remove if unused
                 <!--
                 <div class="well well-white">
-                    <?php //echo $this->renderPartial('/_item/elements/actions', compact("model", "execution")); ?>
+                    <?php //echo $this->renderPartial('vendor.neam.yii-workflow-ui.themes.simplicity.views._item.elements/actions', compact("model", "execution")); ?>
                 </div>
                 -->
             </div>

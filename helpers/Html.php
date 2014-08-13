@@ -161,8 +161,8 @@ EOF;
     static public function jsDirtyForms()
     {
         self::jsFacebox(); // required by Dirty Forms
-        publishJs(Yii::getPathOfAlias('vendor.neam.yii-workflow-ui/themes/simplicity') . '/js/vendor/jquery.dirtyforms.js', CClientScript::POS_HEAD);
-        publishJs(Yii::getPathOfAlias('vendor.neam.yii-workflow-ui/themes/simplicity') . '/js/dirty-forms-ckeditor.js', CClientScript::POS_HEAD);
+        publishJs(Yii::getPathOfAlias('vendor.neam.yii-workflow-ui.themes.simplicity') . '/js/vendor/jquery.dirtyforms.js', CClientScript::POS_HEAD);
+        publishJs(Yii::getPathOfAlias('vendor.neam.yii-workflow-ui.themes.simplicity') . '/js/dirty-forms-ckeditor.js', CClientScript::POS_HEAD);
 
         $title = Yii::t('app', 'You have unsaved changes');
         $message = Yii::t('app', 'Would you like to continue without saving?');
@@ -174,7 +174,7 @@ EOF;
         ";
 
         app()->clientScript->registerScript('registerDirtyForms', $js, CClientScript::POS_END);
-        publishJs(Yii::getPathOfAlias('vendor.neam.yii-workflow-ui/themes/simplicity') . '/js/toggle-dirty-buttons.js', CClientScript::POS_READY); // show action buttons when form is dirty
+        publishJs(Yii::getPathOfAlias('vendor.neam.yii-workflow-ui.themes.simplicity') . '/js/toggle-dirty-buttons.js', CClientScript::POS_READY); // show action buttons when form is dirty
     }
 
     /**
@@ -182,8 +182,8 @@ EOF;
      */
     static public function jsFacebox()
     {
-        publishJs(Yii::getPathOfAlias('vendor.neam.yii-workflow-ui/themes/simplicity') . '/js/vendor/facebox/facebox.js', CClientScript::POS_HEAD);
-        publishCss(Yii::getPathOfAlias('vendor.neam.yii-workflow-ui/themes/simplicity') . '/js/vendor/facebox/assets/facebox.css');
+        publishJs(Yii::getPathOfAlias('vendor.neam.yii-workflow-ui.themes.simplicity') . '/js/vendor/facebox/facebox.js', CClientScript::POS_HEAD);
+        publishCss(Yii::getPathOfAlias('vendor.neam.yii-workflow-ui.themes.simplicity') . '/js/vendor/facebox/assets/facebox.css');
         $closeImage = app()->baseUrl . '/images/facebox/closelabel.png';
         $loadingImage = app()->baseUrl . '/images/facebox/loading.gif';
         app()->clientScript->registerScript('registerFacebox', "$.facebox.settings.closeImage = '{$closeImage}'; $.facebox.settings.loadingImage = '{$loadingImage}'", CClientScript::POS_END);

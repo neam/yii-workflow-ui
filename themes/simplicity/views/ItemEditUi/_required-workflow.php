@@ -1,5 +1,5 @@
 <?php
-/* @var Controller|ItemController $this */
+/* @var Controller|WorkflowUiControllerTrait $this */
 /* @var ActiveRecord|ItemTrait|QaStateBehavior $model */
 /* @var AppActiveForm $form */
 ?>

@@ -4,10 +4,10 @@
 ?>
 <div class="flowbar">
     <h1 class="flowbar-title">
-        <?php $this->renderPartial('/_item/elements/_header', array('model' => $model)); ?>
+        <?php $this->renderPartial('vendor.neam.yii-workflow-ui.themes.simplicity.views._item.elements/_header', array('model' => $model)); ?>
     </h1>
     <?php if ($this->action->id == "edit"): ?>
-        <?php $this->renderPartial('/_item/elements/_action-buttons', compact('model')); ?>
+        <?php $this->renderPartial('vendor.neam.yii-workflow-ui.themes.simplicity.views._item.elements/_action-buttons', compact('model')); ?>
     <?php elseif ($this->action->id != "preview" && $this->action->id != "view" && $this->action->id != "browse"): ?>
         <div class="well well-small">
             <div class="row">
