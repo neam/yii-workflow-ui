@@ -122,11 +122,6 @@ class AppActiveForm extends TbActiveForm
             'title',
             'question',
         );
-        /**
-         * For file type accept HTML5 attribute
-         */
-        if( !empty( $fieldOptions['accept'] )  )
-            $htmlOptions['accept'] = $fieldOptions['accept'].'/*';
 
         if ($controllerAction === self::CONTROLLER_ACTION_TRANSLATE) {
             // Auto-generate slug from title
@@ -137,7 +132,7 @@ class AppActiveForm extends TbActiveForm
             }
 
             // Get hint
-            if (isset($fieldOptions['hint']) && $fieldOptions['hint']) {
+            if (!empty($fieldOptions['hint'])) {
                 $htmlOptions['label'] = Html::attributeLabelWithTooltip($model, $attributeTranslateInto, 'title');
             } else {
                 $htmlOptions['label'] = $model->getAttributeLabel($attributeTranslateInto);
@@ -172,7 +167,7 @@ class AppActiveForm extends TbActiveForm
             }
 
             // Get hint
-            if (isset($fieldOptions['hint']) && $fieldOptions['hint']) {
+            if (!empty($fieldOptions['hint'])) {
                 $htmlOptions['label'] = Html::attributeLabelWithTooltip($model, $attributeSourceLanguage, 'title');
             }
 
@@ -182,6 +177,11 @@ class AppActiveForm extends TbActiveForm
                 '.slugit-from-1' => '.slugit-to-1',
             ));
             */
+
+            if( !empty( $fieldOptions['htmlOptions'] ) )
+            {
+                $htmlOptions = array_merge($htmlOptions,$fieldOptions['htmlOptions']);
+            }
 
             return $this->createControlGroup($inputType, $model, $attributeSourceLanguage, $htmlOptions);
         }
@@ -240,7 +240,6 @@ class AppActiveForm extends TbActiveForm
     public function createControlGroup($type, $model, $attribute, $htmlOptions = array(), $data = array())
     {
         $htmlOptions[self::DATA_ORIGINAL_VALUE] = $this->getAttributeValue($model, $attribute);
-
         if ($model->asa('i18n-attribute-messages') !== null) {
             $model = $model->edited();
         }
