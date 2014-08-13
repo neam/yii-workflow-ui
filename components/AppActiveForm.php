@@ -158,11 +158,9 @@ class AppActiveForm extends TbActiveForm
             }
 
             // Bind slug field
-            /*
             Html::jsSlugIt(array(
                 '.slugit-from-1' => '.slugit-to-1',
             ));
-            */
 
             return $this->createControlGroup($inputType, $model, $attributeSourceLanguage, $htmlOptions);
         }
