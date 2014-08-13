@@ -30,7 +30,7 @@
         "crisu83/yiistrap": "dev-bs3",
         "phundament/jquery-file-upload": "@dev",
         "phundament/p3media": "0.17.3",
-        "neam/yii-simplicity-theme": "dev-develop",
+        "neam/yii-simplicity-theme": "dev-adoveo-client",
         "neam/yii-workflow-core": "dev-develop",
         "yiisoft/yii": ">=1.1.0"
     }
