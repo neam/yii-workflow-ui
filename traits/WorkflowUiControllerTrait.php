@@ -735,7 +735,7 @@ trait WorkflowUiControllerTrait
         $model->scenario = $this->scenario;
 
         $behaviors = $model->behaviors();
-        if (isset($behaviors['yii-relational-graph-db'])) {
+        if (isset($behaviors['relational-graph-db'])) {
             if (Yii::app()->request->getPost($this->modelClass, false)) {
                 $this->handleEdges($model);
             }
