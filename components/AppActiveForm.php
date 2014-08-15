@@ -39,6 +39,7 @@ class AppActiveForm extends TbActiveForm
      * @param string $attribute
      * @param string $translateInto
      * @param string $controllerAction
+     * @param array $fieldOptions
      * @return string
      */
     public function translateTextFieldControlGroup($model, $attribute, $translateInto, $controllerAction, $fieldOptions = array())
@@ -53,6 +54,7 @@ class AppActiveForm extends TbActiveForm
      * @param string $translateInto
      * @param string $controllerAction
      * @param array $fieldOptions
+     * @return string
      */
     public function translateTextAreaControlGroup($model, $attribute, $translateInto, $controllerAction, $fieldOptions = array())
     {
@@ -119,7 +121,7 @@ class AppActiveForm extends TbActiveForm
 
             // Get hint
             if (isset($fieldOptions['hint']) && $fieldOptions['hint']) {
-                $htmlOptions['label'] = Html::attributeLabelWithTooltip($model, $attributeTranslateInto, 'title');
+                $htmlOptions['label'] = Html::attributeLabelWithTooltip($model, $attributeTranslateInto, $attribute);
             } else {
                 $htmlOptions['label'] = $model->getAttributeLabel($attributeTranslateInto);
             }
@@ -154,7 +156,7 @@ class AppActiveForm extends TbActiveForm
 
             // Get hint
             if (isset($fieldOptions['hint']) && $fieldOptions['hint']) {
-                $htmlOptions['label'] = Html::attributeLabelWithTooltip($model, $attributeSourceLanguage, 'title');
+                $htmlOptions['label'] = Html::attributeLabelWithTooltip($model, $attributeSourceLanguage, $attribute);
             }
 
             // Bind slug field
