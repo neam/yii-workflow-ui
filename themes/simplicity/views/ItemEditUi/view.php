@@ -35,7 +35,7 @@
     </div>
     <?php if (in_array($this->actionPartialView, array('_prepareForPublishing', '_prepareForReview'))): ?>
         <?php if (in_array($this->actionPartialView, array('_prepareForPublishing', '_prepareForReview'))): ?>
-            <?php $this->render('_required-workflow', array(
+            <?php $this->render('vendor.neam.yii-workflow-ui.themes.simplicity.views.ItemEditUi._required-workflow', array(
                 'model' => $this->model,
             )); ?>
         <?php endif; ?>

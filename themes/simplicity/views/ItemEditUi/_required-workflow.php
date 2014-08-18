@@ -88,4 +88,4 @@
         </div>
     </div>
 </div>
-<?php publishJs('/themes/gapminder/js/workflow-validation-guide.js', CClientScript::POS_END); ?>
+<?php publishJs(Yii::getPathOfAlias('vendor.neam.yii-workflow-ui.themes.simplicity') . '/js/workflow-validation-guide.js', CClientScript::POS_END); ?>

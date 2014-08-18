@@ -39,24 +39,12 @@ class AppActiveForm extends TbActiveForm
      * @param string $attribute
      * @param string $translateInto
      * @param string $controllerAction
+     * @param array $fieldOptions
      * @return string
      */
     public function translateTextFieldControlGroup($model, $attribute, $translateInto, $controllerAction, $fieldOptions = array())
     {
         return $this->translateFieldControlGroup($model, $attribute, $translateInto, $controllerAction, TbHtml::INPUT_TYPE_TEXT, $fieldOptions);
-    }
-
-    /**
-     * Creates a multi text field control group for a translatable attribute.
-     * @param ActiveRecord|ItemTrait $model
-     * @param string $attribute
-     * @param string $translateInto
-     * @param string $controllerAction
-     * @return string
-     */
-    public function translateFileFieldControlGroup($model, $attribute, $translateInto, $controllerAction, $fieldOptions = array())
-    {
-        return $this->translateFieldControlGroup($model, $attribute, $translateInto, $controllerAction, TbHtml::INPUT_TYPE_FILE, $fieldOptions);
     }
 
     /**
@@ -66,6 +54,7 @@ class AppActiveForm extends TbActiveForm
      * @param string $translateInto
      * @param string $controllerAction
      * @param array $fieldOptions
+     * @return string
      */
     public function translateTextAreaControlGroup($model, $attribute, $translateInto, $controllerAction, $fieldOptions = array())
     {
@@ -110,8 +99,7 @@ class AppActiveForm extends TbActiveForm
      */
     public function translateFieldControlGroup($model, $attribute, $translateInto, $controllerAction, $inputType, $fieldOptions = array())
     {
-        //$attributeSourceLanguage = $attribute . '_' . $model->source_language;
-        $attributeSourceLanguage = $attribute;
+        $attributeSourceLanguage = $attribute . '_' . $model->source_language;
         $attributeTranslateInto = $attribute . '_' . $translateInto;
 
         // TODO: Add support for dynamic htmlOptions.
@@ -132,8 +120,8 @@ class AppActiveForm extends TbActiveForm
             }
 
             // Get hint
-            if (!empty($fieldOptions['hint'])) {
-                $htmlOptions['label'] = Html::attributeLabelWithTooltip($model, $attributeTranslateInto, 'title');
+            if (isset($fieldOptions['hint']) && $fieldOptions['hint']) {
+                $htmlOptions['label'] = Html::attributeLabelWithTooltip($model, $attributeTranslateInto, $attribute);
             } else {
                 $htmlOptions['label'] = $model->getAttributeLabel($attributeTranslateInto);
             }
@@ -167,21 +155,14 @@ class AppActiveForm extends TbActiveForm
             }
 
             // Get hint
-            if (!empty($fieldOptions['hint'])) {
-                $htmlOptions['label'] = Html::attributeLabelWithTooltip($model, $attributeSourceLanguage, 'title');
+            if (isset($fieldOptions['hint']) && $fieldOptions['hint']) {
+                $htmlOptions['label'] = Html::attributeLabelWithTooltip($model, $attributeSourceLanguage, $attribute);
             }
 
             // Bind slug field
-            /*
             Html::jsSlugIt(array(
                 '.slugit-from-1' => '.slugit-to-1',
             ));
-            */
-
-            if( !empty( $fieldOptions['htmlOptions'] ) )
-            {
-                $htmlOptions = array_merge($htmlOptions,$fieldOptions['htmlOptions']);
-            }
 
             return $this->createControlGroup($inputType, $model, $attributeSourceLanguage, $htmlOptions);
         }
@@ -240,6 +221,7 @@ class AppActiveForm extends TbActiveForm
     public function createControlGroup($type, $model, $attribute, $htmlOptions = array(), $data = array())
     {
         $htmlOptions[self::DATA_ORIGINAL_VALUE] = $this->getAttributeValue($model, $attribute);
+
         if ($model->asa('i18n-attribute-messages') !== null) {
             $model = $model->edited();
         }

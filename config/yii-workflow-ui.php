@@ -13,7 +13,7 @@ $config['components']['workflowUi'] = array(
     'class' => 'vendor.neam.yii-workflow-ui.components.WorkflowUi',
 );
 
-$config['modules']['p3media'] = array_merge($config['modules']['p3media'], array(
+$config['modules']['p3media'] = CMap::mergeArray($config['modules']['p3media'], array(
     'params' => array(
         'presets' => array(
             'item-thumbnail' => array(
@@ -38,14 +38,6 @@ $config['modules']['p3media'] = array_merge($config['modules']['p3media'], array
                     'resize' => array(442, 253, 7),
                     'quality' => 85,
                 ),
-            ),
-            'related-thumb' => array(
-                'name' => 'Related Panel Thumbnail',
-                'commands' => array(
-                    'resize' => array(200, 200, 2),
-                    'quality' => '100',
-                ),
-                'type' => 'jpg',
             ),
         ),
     ),

@@ -196,7 +196,7 @@ EOF;
      */
     static public function jsSlugIt($fields = array(), $separator = '-')
     {
-        publishJs(Yii::app()->theme->basePath . '/js/slugit.js', CClientScript::POS_HEAD);
+        publishJs(Yii::getPathOfAlias('vendor.neam.yii-workflow-ui.themes.simplicity') . '/js/slugit.js', CClientScript::POS_HEAD);
         foreach ($fields as $from => $to) {
             app()->clientScript->registerScript('slugIt_' . $from, "jQuery('$from').slugIt({output: '$to', separator: '$separator'});", CClientScript::POS_END);
             app()->clientScript->registerScript('slugItOnLoad_' . $to, "if (jQuery('$to').length > 0 && jQuery('$to').val().length === 0) jQuery('$from').trigger(jQuery.Event('keypress', {which: 27 /* ESC key */}));", CClientScript::POS_READY);
