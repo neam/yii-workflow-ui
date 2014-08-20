@@ -12,41 +12,36 @@ require($applicationDirectory . '/../vendor/neam/yii-workflow-ui/global.php');
 $config['components']['workflowUi'] = array(
     'class' => 'vendor.neam.yii-workflow-ui.components.WorkflowUi',
 );
-
-$config['modules']['p3media'] = array_merge($config['modules']['p3media'], array(
-    'params' => array(
-        'presets' => array(
-            'item-thumbnail' => array(
-                'name' => 'Item Thumbnail',
-                'commands' => array(
-                    'resize' => array(150, 80, 7), // Image::AUTO
-                    'quality' => '85',
-                ),
-                'type' => 'jpg',
+$config['modules']['p3media']['params']['presets'] = array_merge($config['modules']['p3media']['params']['presets'],array(
+        'item-thumbnail' => array(
+            'name' => 'Item Thumbnail',
+            'commands' => array(
+                'resize' => array(150, 80, 7), // Image::AUTO
+                'quality' => '85',
             ),
-            'select2-thumb' => array(
-                'name' => 'Select2 Thumbnail',
-                'commands' => array(
-                    'resize' => array(35, 35, 7), // Image::AUTO
-                    'quality' => '85',
-                ),
-                'type' => 'jpg',
+            'type' => 'jpg',
+        ),
+        'select2-thumb' => array(
+            'name' => 'Select2 Thumbnail',
+            'commands' => array(
+                'resize' => array(35, 35, 7), // Image::AUTO
+                'quality' => '85',
             ),
-            'item-workflow-preview' => array(
-                'name' => 'Item Workflow Preview',
-                'commands' => array(
-                    'resize' => array(442, 253, 7),
-                    'quality' => 85,
-                ),
-            ),
-            'related-thumb' => array(
-                'name' => 'Related Panel Thumbnail',
-                'commands' => array(
-                    'resize' => array(200, 200, 2),
-                    'quality' => '100',
-                ),
-                'type' => 'jpg',
+            'type' => 'jpg',
+        ),
+        'item-workflow-preview' => array(
+            'name' => 'Item Workflow Preview',
+            'commands' => array(
+                'resize' => array(442, 253, 7),
+                'quality' => 85,
             ),
         ),
-    ),
-));
+        'related-thumb' => array(
+            'name' => 'Related Panel Thumbnail',
+            'commands' => array(
+                'resize' => array(200, 200, 2),
+                'quality' => '100',
+            ),
+            'type' => 'jpg',
+        ),
+    ));
