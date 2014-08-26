@@ -112,8 +112,8 @@ class AppActiveForm extends TbActiveForm
      */
     public function translateFieldControlGroup($model, $attribute, $translateInto, $controllerAction, $inputType, $fieldOptions = array())
     {
-        $attributeSourceLanguage = $attribute . '_' . $model->source_language;
-        $attributeTranslateInto = $attribute . '_' . $translateInto;
+        // Problem with name_en attribute with adoveo client
+        $attributeSourceLanguage = $attributeTranslateInto = $attribute;
 
         // TODO: Add support for dynamic htmlOptions.
         $htmlOptions = array();

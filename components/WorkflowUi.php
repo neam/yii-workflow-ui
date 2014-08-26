@@ -33,8 +33,14 @@ class WorkflowUi extends CComponent
         $files = array('main.css');
 
         if (!empty($files)) {
+
             // Set the CSS path
             $forceCopy = (defined('DEV') && DEV) || !empty($_GET['refresh_assets']) ? true : false;
+            if( $forceCopy ){
+                // The "forceCopy" and "linkAssets" cannot be both true.
+                // Get an error if both true
+                Yii::app()->assetManager->linkAssets = false;
+            }
             $css = Yii::app()->assetManager->publish(
                 Yii::app()->theme->basePath . '/' . $path,
                 true, // hash by name

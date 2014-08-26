@@ -42,7 +42,7 @@
                                 <?php echo TbHtml::linkButton(
                                     Yii::t('app', 'Stop Editing'),
                                     array(
-                                        'url' => array('browse'),
+                                        'url' => array('dashboard/index'),
                                         'color' => TbHtml::BUTTON_COLOR_LINK,
                                         'icon' => TbHtml::ICON_REMOVE,
                                         'size' => TbHtml::BUTTON_SIZE_XS,

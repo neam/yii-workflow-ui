@@ -7,15 +7,6 @@
         <div class="header-text">
             <h2 class="header-title">
                 <?php echo $data->itemLabel; ?>
-                <small class="header-version">
-                    <?php echo Yii::t('app', 'Version') ?>: <?php echo $data->version; ?>
-                </small>
-                <small class="header-status">
-                    <?php echo Yii::t('app', 'Status'); ?>: <?php echo Yii::t(
-                        'statuses',
-                        $data->qaStateBehavior()->statusLabel
-                    ); ?>
-                </small>
             </h2>
         </div>
         <div class="header-actions">
