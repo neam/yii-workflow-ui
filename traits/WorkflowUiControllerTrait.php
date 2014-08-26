@@ -1068,9 +1068,6 @@ trait WorkflowUiControllerTrait
         $model = $this->loadModel($id);
         $model->scenario = $this->scenario;
 
-        /** @var WorkflowUiControllerTrait|Controller $this */
-        $this->requireProfileLanguages();
-
         $this->populateWorkflowData($model, null, Yii::t('app', ''));
 
         /** @var Controller|WorkflowUiControllerTrait $this */
