@@ -19,7 +19,7 @@
         'action' => $this->getFormAction(),
         'id' => 'item-form',
         'enableAjaxValidation' => true,
-        'clientOptions' => array( //'validateOnSubmit' => true,
+        'clientOptions' => array( 
         ),
         'htmlOptions' => array(
             'class' => 'dirtyforms',
