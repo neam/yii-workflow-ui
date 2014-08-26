@@ -34,6 +34,19 @@ class AppActiveForm extends TbActiveForm
     }
 
     /**
+     * Creates a multi date field control group for a translatable attribute.
+     * @param ActiveRecord|ItemTrait $model
+     * @param string $attribute
+     * @param string $translateInto
+     * @param string $controllerAction
+     * @return string
+     */
+    public function translateTextFieldDateControlGroup($model, $attribute, $translateInto, $controllerAction, $fieldOptions = array())
+    {
+        return $this->translateFieldControlGroup($model, $attribute, $translateInto, $controllerAction, TbHtml::INPUT_TYPE_DATE, $fieldOptions);
+    }
+
+    /**
      * Creates a multi text field control group for a translatable attribute.
      * @param ActiveRecord|ItemTrait $model
      * @param string $attribute
