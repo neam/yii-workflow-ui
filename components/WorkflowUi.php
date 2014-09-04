@@ -60,6 +60,18 @@ class WorkflowUi extends CComponent
      */
     public function registerScripts()
     {
+        $baseUrl = Yii::app()->baseUrl;
+        $clientScript = Yii::app()->getClientScript();
+        $js = Yii::app()->assetManager->publish(
+            Yii::app()->theme->basePath . '/assets',
+            true, // hash by name
+            -1 // level
+
+        );
+        $clientScript->registerScriptFile($js.'/angular.min.js');
+        $clientScript->registerScriptFile($js.'/angular-loader.min.js');
+        $clientScript->registerScriptFile($js.'/angular-route.min.js');
+        $clientScript->registerScriptFile($js.'/angular-sanitize.min.js');
         //$this->ga->registerTracking();
         Yii::app()->yiistrap->registerAllScripts();
         Html::jsDirtyForms(); // TODO: Load this only when needed.
