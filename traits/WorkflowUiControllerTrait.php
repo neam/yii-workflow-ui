@@ -1473,7 +1473,7 @@ trait WorkflowUiControllerTrait
 
         $breadcrumbs = array();
         $breadcrumbs[Yii::t('app', $model->modelLabel, 2)] = array('browse');
-        $breadcrumbs[$itemTitle] = array('view', 'id' => $model->id);
+        $breadcrumbs[$itemTitle] = array('edit', 'id' => $model->id,'step' => 'basic-campaign-info' );
 
         switch ($this->action->id) {
             case WorkflowUiControllerConstants::ACTION_EDIT:
