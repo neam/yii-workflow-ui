@@ -6,9 +6,11 @@
     <div class="progress-dots">
         <ul class="step-progress-dots">
             <?php for ($i = 1; $i <= $totalStepCount; $i++): ?>
-                    <li class="active">
-                        <a href="<?php echo Yii::app()->controller->createUrl('p1campaign/edit',array('id'=> $_GET['id'],'step' => $steps[$i-1]['step'])) ?>">...</a>
-                    </li>
+                <?php if ((int) $i <= (int) $currentStepNumber): ?>
+                    <li class="active"></li>
+                <?php else: ?>
+                    <li></li>
+                <?php endif; ?>
             <?php endfor; ?>
         </ul>
     </div>
