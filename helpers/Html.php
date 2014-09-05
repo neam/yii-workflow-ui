@@ -336,63 +336,6 @@ EOF;
     }
 
     /**
-     * Returns a list of available languages (language codes, e.g. 'en_us').
-     * @return array
-     */
-    static public function getLanguages()
-    {
-        $languages = array(
-            'en'    => Yii::t('language', 'English'),
-            'es'    => Yii::t('language', 'Spanish'),
-            'hi'    => Yii::t('language', 'Hindi'),
-            'pt'    => Yii::t('language', 'Portuguese'),
-            'sv'    => Yii::t('language', 'Swedish'),
-            'de'    => Yii::t('language', 'German'),
-            'zh'    => Yii::t('language', 'Chinese'),
-            'ar'    => Yii::t('language', 'Arabic'),
-            'bg'    => Yii::t('language', 'Bulgarian'),
-            'ca'    => Yii::t('language', 'Catalan'),
-            'cs'    => Yii::t('language', 'Czech'),
-            'da'    => Yii::t('language', 'Danish'),
-            'en_gb' => Yii::t('language', 'English (United Kingdom)'),
-            'en_us' => Yii::t('language', 'English (United States)'),
-            'el'    => Yii::t('language', 'Greek'),
-            'fi'    => Yii::t('language', 'Finnish'),
-            'fil'   => Yii::t('language', 'Filipino'),
-            'fr'    => Yii::t('language', 'French'),
-            'hr'    => Yii::t('language', 'Croatian'),
-            'hu'    => Yii::t('language', 'Hungarian'),
-            'id'    => Yii::t('language', 'Indonesian'),
-            'iw'    => Yii::t('language', 'Hebrew'),
-            'it'    => Yii::t('language', 'Italian'),
-            'ja'    => Yii::t('language', 'Japanese'),
-            'ko'    => Yii::t('language', 'Korean'),
-            'lt'    => Yii::t('language', 'Lithuanian'),
-            'lv'    => Yii::t('language', 'Latvian'),
-            'nl'    => Yii::t('language', 'Dutch'),
-            'no'    => Yii::t('language', 'Norwegian'),
-            'pl'    => Yii::t('language', 'Polish'),
-            'pt_br' => Yii::t('language', 'Portuguese (Brazil)'),
-            'pt_pt' => Yii::t('language', 'Portuguese (Portugal)'),
-            'ro'    => Yii::t('language', 'Romanian'),
-            'ru'    => Yii::t('language', 'Russian'),
-            'sk'    => Yii::t('language', 'Slovak'),
-            'sl'    => Yii::t('language', 'Slovenian'),
-            'sr'    => Yii::t('language', 'Serbian'),
-            'th'    => Yii::t('language', 'Thai'),
-            'tr'    => Yii::t('language', 'Turkish'),
-            'uk'    => Yii::t('language', 'Ukranian'),
-            'vi'    => Yii::t('language', 'Vietnamese'),
-            'zh_cn' => Yii::t('language', 'Chinese (PRC)'),
-            'zh_tw' => Yii::t('language', 'Chinese (Taiwan & Hong Kong)'),
-        );
-
-        asort($languages); // sort alphabetically
-
-        return $languages;
-    }
-
-    /**
      * Renders the Gapminder logo.
      * @param string $alt the image alt text.
      * @param array $htmlOptions
