@@ -30,7 +30,7 @@ class WorkflowUi extends CComponent
     public function registerCss()
     {
         $path = 'assets';
-        $files = array('main.css');
+        $files = array('main.css','bootstrap-switch.min.css');
 
         if (!empty($files)) {
 
@@ -69,9 +69,11 @@ class WorkflowUi extends CComponent
 
         );
         $clientScript->registerScriptFile($js.'/angular.min.js');
+
         $clientScript->registerScriptFile($js.'/angular-loader.min.js');
         $clientScript->registerScriptFile($js.'/angular-route.min.js');
         $clientScript->registerScriptFile($js.'/angular-sanitize.min.js');
+
         //$this->ga->registerTracking();
         Yii::app()->yiistrap->registerAllScripts();
         Html::jsDirtyForms(); // TODO: Load this only when needed.
