@@ -134,6 +134,7 @@ class AppActiveForm extends TbActiveForm
             // Disable translation field if the original value is empty
             if (empty($model->{$attributeSourceLanguage})) {
                 $htmlOptions['disabled'] = true;
+                return; // do not render at all
             }
 
             $html = Html::activeStaticTextFieldControlGroup(
@@ -142,7 +143,12 @@ class AppActiveForm extends TbActiveForm
                 $htmlOptions
             );
 
-            $html .= $this->createInput($inputType, $model->edited(), $attributeTranslateInto, $htmlOptions);
+            $html .= $this->createInput(
+                $inputType,
+                $model->edited(),
+                $attributeTranslateInto,
+                $htmlOptions
+            );
 
             $errorOptions = TbArray::popValue('errorOptions', $htmlOptions, array());
 
