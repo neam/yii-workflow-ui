@@ -248,6 +248,18 @@ EOF;
     }
 
     /**
+     * Returns a model attribute label combined with a tooltip.
+     * @param ActiveRecord $model
+     * @param string $attribute the model attribute.
+     * @param string $tooltipText the tooltip text.
+     * @return string
+     */
+    static public function getAttributeLabelWithTooltip(ActiveRecord $model, $attribute, $tooltipText)
+    {
+        return $model->getAttributeLabel($attribute) . ' ' . self::hintTooltip($tooltipText);
+    }
+
+    /**
      * Creates a link button with an icon.
      * @param string $icon the icon class.
      * @param string $label the button label.
