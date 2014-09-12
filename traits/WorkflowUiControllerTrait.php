@@ -1311,6 +1311,22 @@ trait WorkflowUiControllerTrait
         } else {
             $this->setBackToTranslationUrl();
 
+            if ($this->isTranslateAction() && $this->isFinalStep($model)) {
+                \Yii::app()->user->setFlash(
+                    \TbHtml::ALERT_COLOR_SUCCESS,
+                    \Yii::t(
+                        'app',
+                        'Done translating. Please look for more items to translate under {link}.',
+                        array(
+                            '{link}' => \TbHtml::link(
+                                \Yii::t('app', 'My Tasks'),
+                                \Yii::app()->createUrl('/profile/tasks')
+                            ),
+                        )
+                    )
+                );
+            }
+
             // redirect
             if (isset($_REQUEST['returnUrl'])) {
                 $this->redirect($_REQUEST['returnUrl']);
@@ -1322,6 +1338,34 @@ trait WorkflowUiControllerTrait
                 $this->actionCancel($model->id);
             }
         }
+    }
+
+    /**
+     * Returns if this is the 'translate' action.
+     *
+     * @return bool
+     */
+    public function isTranslateAction()
+    {
+        return $this->action->id === 'translate';
+    }
+
+    /**
+     * Returns if this is the final step in the workflow.
+     *
+     * @param object $model
+     * @return bool
+     */
+    public function isFinalStep($model)
+    {
+        $steps = array();
+        foreach ($model->flowSteps() as $step => $fields) {
+            if ($this->isTranslateAction() && !$this->isStepTranslatable($model, $fields)) {
+                continue;
+            }
+            $steps[] = $step;
+        }
+        return $this->step === end($steps);
     }
 
     /**
