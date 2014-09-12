@@ -50,6 +50,20 @@ class WorkflowUi extends CComponent
     }
 
     /**
+     * Registers fonts.
+     */
+    public function registerFonts()
+    {
+        $fonts = isset(app()->params['fonts'])
+            ? app()->params['fonts']
+            : array();
+
+        foreach ($fonts as $fontName => $config) {
+            registerPackage($fontName, $config['basePathAlias'], $config['css']);
+        }
+    }
+
+    /**
      * Registers JavaScript files.
      */
     public function registerScripts()
