@@ -664,7 +664,6 @@ trait WorkflowUiControllerTrait
             throw new CException('This item does not validate for the publishable status.');
         }
 
-        $model->changeStatus('public');
         $model->makeNodeHasGroupVisible();
 
         $this->redirect(array('browse'));
@@ -677,19 +676,11 @@ trait WorkflowUiControllerTrait
      */
     public function actionUnpublish($id)
     {
-        $permissionAttributes = array(
-            'account_id' => Yii::app()->user->id,
-            'group_id' => PermissionHelper::groupNameToId('GapminderInternal'),
-            'role_id' => PermissionHelper::roleNameToId('Group Publisher'),
-        );
 
-        if (PermissionHelper::groupHasAccount($permissionAttributes)) {
-            $model = $this->loadModel($id);
-            $model->refreshQaState();
-            $model->makeNodeHasGroupHidden();
-        } else {
-            throw new CHttpException(403, Yii::t('error', 'You do not have permission to unpublish items.'));
-        }
+        $model = $this->loadModel($id);
+        $model->refreshQaState();
+
+        $model->makeNodeHasGroupHidden();
 
         $this->redirect(array('browse'));
     }
