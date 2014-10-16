@@ -28,7 +28,7 @@
         "php": ">=5.4.0",
         "crisu83/yiistrap-widgets": "1.7.*",
         "crisu83/yiistrap": "dev-bs3",
-        "phundament/jquery-file-upload": "@dev",
+        "phundament/p3extensions": "0.17.0",
         "phundament/p3media": "0.17.3",
         "neam/yii-simplicity-theme": "dev-develop",
         "yiisoft/yii": ">=1.1.0"
