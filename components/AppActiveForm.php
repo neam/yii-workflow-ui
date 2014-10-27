@@ -144,15 +144,27 @@ class AppActiveForm extends TbActiveForm
                 '.slugit-from-2' => '.slugit-to-2',
             ));
 
+            // Disable translation field if the original value is empty
+            if (empty($model->{$attributeSourceLanguage})) {
+                $htmlOptions['disabled'] = true;
+                return; // do not render at all
+            }
+
             $html = Html::activeStaticTextFieldControlGroup(
                 $model,
                 $attributeSourceLanguage,
                 $htmlOptions
             );
 
-            $html .= $this->createInput($inputType, $model->edited(), $attributeTranslateInto, $htmlOptions);
+            $html .= $this->createInput(
+                $inputType,
+                $model->edited(),
+                $attributeTranslateInto,
+                $htmlOptions
+            );
 
             $errorOptions = TbArray::popValue('errorOptions', $htmlOptions, array());
+
             if ($model->hasErrors($attributeTranslateInto)) {
                 TbHtml::addCssClass('error', $errorOptions);
                 $html .= $this->error($model, $attributeTranslateInto, $errorOptions);
