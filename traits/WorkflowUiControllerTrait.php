@@ -1319,10 +1319,12 @@ trait WorkflowUiControllerTrait
             }
 
             // redirect
-            if (isset($_REQUEST['returnUrl'])) {
+            if (isset($_POST['save-and-continue'])) {
                 $this->redirect($_REQUEST['returnUrl']);
             } else if (isset($_POST['save-changes'])) {
                 $this->redirect($_REQUEST['form-url']);
+            } else if (isset($_REQUEST['returnUrl'])) {
+                $this->redirect($_REQUEST['returnUrl']);
             } else if (isset($_POST['next-required'])) {
                 $this->redirect($_REQUEST['next-required-url']);
             } else {

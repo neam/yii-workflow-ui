@@ -35,7 +35,7 @@
         array(
             //'class' => 'btn-dirtyforms',
             'color' => TbHtml::BUTTON_COLOR_PRIMARY,
-            'name' => 'save-changes',
+            'name' => 'save-and-continue',
         )
     ); ?>
 </div>
