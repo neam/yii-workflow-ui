@@ -46,7 +46,7 @@ class ItemDetails extends CWidget
      */
     public function getAttributeValue($attribute)
     {
-        return $this->model->hasAttribute($attribute)
+        return $this->model->hasAttribute($attribute) || $this->model->handlesProperty($attribute)
             ? e($this->model->{$attribute})
             : '';
     }
@@ -59,7 +59,7 @@ class ItemDetails extends CWidget
      */
     public function getAttributeLabel($attribute)
     {
-        return $this->model->hasAttribute($attribute)
+        return $this->model->hasAttribute($attribute) || $this->model->handlesProperty($attribute)
             ? e($this->model->getAttributeLabel($attribute))
             : '';
     }
