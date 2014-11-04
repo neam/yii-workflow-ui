@@ -28,9 +28,6 @@
                         </div>
                         <?php endif; ?>
                     </div>
-                    <div class="item-preview">
-                        <?php echo $this->model->renderImage('item-workflow-preview'); ?>
-                    </div>
                 </div>
                 <div class="content-secondary">
                     <div class="content-header">

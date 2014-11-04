@@ -228,6 +228,11 @@ class ItemEditUi extends CWidget
         return (int) $this->getCurrentStepNumber() === (int) $this->getTotalStepCount();
     }
 
+
+    public function getSubmitDraftSaveButton()
+    {
+        return Yii::t('app','Save as draft');
+    }
     /**
      * Returns the text label for the submit button.
      * @return string

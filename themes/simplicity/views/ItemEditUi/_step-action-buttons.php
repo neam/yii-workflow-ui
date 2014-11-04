@@ -10,16 +10,22 @@
         )
     ); ?>
     */ ?>
-    <?php /*
     <?php echo TbHtml::linkButton(
         Yii::t('app', 'Cancel'),
         array(
             'color' => TbHtml::BUTTON_COLOR_LINK,
-            'url' => array('browse'),
-            //'class' => 'ignoredirty',
+            'url' => array('dashboard/index'),
+            'class' => 'ignoredirty',
         )
     ); ?>
-    */ ?>
+    <?php echo TbHtml::submitButton(
+        $this->getSubmitDraftSaveButton(),
+        array(
+            //'class' => 'btn-dirtyforms',
+            'color' => TbHtml::BUTTON_COLOR_PRIMARY,
+            'name' => 'save-draft',
+        )
+    ); ?>
     <?php if (!$this->isFirstStep()): ?>
         <?php echo TbHtml::linkButton(
             Yii::t('app', 'Previous Step'),
@@ -38,4 +44,5 @@
             'name' => 'save-changes',
         )
     ); ?>
+
 </div>

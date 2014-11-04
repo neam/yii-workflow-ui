@@ -30,13 +30,13 @@ class WorkflowUi extends CComponent
     public function registerCss()
     {
         $path = 'assets';
-        $files = array('main.css','bootstrap-switch.min.css');
+        $files = array('main.css', 'bootstrap-switch.min.css');
 
         if (!empty($files)) {
 
             // Set the CSS path
             $forceCopy = (defined('DEV') && DEV) || !empty($_GET['refresh_assets']) ? true : false;
-            if( $forceCopy ){
+            if ($forceCopy) {
                 // The "forceCopy" and "linkAssets" cannot be both true.
                 // Get an error if both true
                 Yii::app()->assetManager->linkAssets = false;
@@ -82,11 +82,11 @@ class WorkflowUi extends CComponent
             -1 // level
 
         );
-        $clientScript->registerScriptFile($js.'/angular.min.js');
+        $clientScript->registerScriptFile($js . '/angular.min.js');
 
-        $clientScript->registerScriptFile($js.'/angular-loader.min.js');
-        $clientScript->registerScriptFile($js.'/angular-route.min.js');
-        $clientScript->registerScriptFile($js.'/angular-sanitize.min.js');
+        $clientScript->registerScriptFile($js . '/angular-loader.min.js');
+        $clientScript->registerScriptFile($js . '/angular-route.min.js');
+        $clientScript->registerScriptFile($js . '/angular-sanitize.min.js');
 
         //$this->ga->registerTracking();
         Yii::app()->yiistrap->registerAllScripts();
