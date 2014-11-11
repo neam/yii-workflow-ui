@@ -24,7 +24,7 @@
             </div>
             <div class="header-actions">
                 <div class="btn-group">
-                    <?php $this->widget(
+                    <?php if (false) $this->widget(
                         '\TbButton',
                         array(
                             'label' => Yii::t('model', 'Preview'),
@@ -56,25 +56,6 @@
             ?>
         </div>
         <div class="foot-actions">
-            <?php $this->widget(
-                '\TbButton',
-                array(
-                    'color' => TbHtml::BUTTON_COLOR_LINK,
-                    'label' => Yii::t('model', 'Reset'),
-                    'url' => Yii::app()->request->url,
-                    'htmlOptions' => array(
-                        'class' => 'btn-dirtyforms ignoredirty',
-                    ),
-                )
-            ); ?>
-            <?php echo TbHtml::submitButton(
-                Yii::t('model', 'Save changes'),
-                array(
-                    'class' => 'btn-dirtyforms',
-                    'color' => TbHtml::BUTTON_COLOR_PRIMARY,
-                    'name' => 'save-changes',
-                )
-            ); ?>
         </div>
     </div>
 <?php $this->endWidget(); ?>

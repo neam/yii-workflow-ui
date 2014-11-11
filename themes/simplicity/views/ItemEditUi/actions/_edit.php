@@ -3,7 +3,8 @@
     <div class="row-column">
         <div class="item-well">
             <div class="item-content">
-                <div class="content-primary">
+                <div class="content-secondary">
+                    <?php /*
                     <div class="content-header">
                         <h2 class="action-heading">
                             <?php echo $this->getActionHeading(); ?>
@@ -33,6 +34,8 @@
                     </div>
                 </div>
                 <div class="content-secondary">
+                    */
+                    ?>
                     <div class="content-header">
                         <div class="action-title-row">
                             <div class="action-title">
