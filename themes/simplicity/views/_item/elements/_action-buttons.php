@@ -190,7 +190,7 @@
                             'nodeId' => $model->node_id,
                             'modelId' => $model->id,
                             'group' => $groupName,
-                            'returnUrl' => TbHtml::encode(Yii::app()->request->url),
+                            'returnUrl' => Yii::app()->request->url,
                         ),
                     )
                 ); ?>
@@ -205,7 +205,7 @@
                             'nodeId' => $model->node_id,
                             'modelId' => $model->id,
                             'group' => $groupName,
-                            'returnUrl' => TbHtml::encode(Yii::app()->request->url),
+                            'returnUrl' => Yii::app()->request->url,
                         ),
                     )
                 ); ?>
