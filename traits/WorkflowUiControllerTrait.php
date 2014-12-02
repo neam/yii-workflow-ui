@@ -36,9 +36,6 @@ trait WorkflowUiControllerTrait
      */
     public function checkModelOperationAccessById($id, $operation)
     {
-
-        return true;
-
         /** @var CActiveRecord|ItemTrait $model */
         $model = CActiveRecord::model($this->modelClass)->findByPk($id);
 
