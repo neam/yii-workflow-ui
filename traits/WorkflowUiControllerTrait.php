@@ -728,7 +728,7 @@ trait WorkflowUiControllerTrait
         $behaviors = $model->behaviors();
         if (isset($behaviors['relational-graph-db'])) {
             if (Yii::app()->request->getPost($this->modelClass, false)) {
-                $this->handleEdges($model);
+                $model->handlePostedEdges(Yii::app()->request->getPost($this->modelClass, array()));
             }
         }
 
@@ -754,117 +754,6 @@ trait WorkflowUiControllerTrait
             'stepCaption' => $stepCaptions[$step],
             'requiredCounts' => $requiredCounts,
         ));
-    }
-
-    /**
-     * @param $model ActiveRecord
-     */
-    protected function handleEdges($model)
-    {
-        $post = Yii::app()->request->getPost($this->modelClass, array());
-
-        $node = $model->node();
-
-        // array of models relation-names
-        $relationNames = array_keys($model->relations());
-
-        // Relations considered safe. Note: set the relation as safe in the model-rules (if it is not already)!
-        $allowedRelations = array_filter(
-        // attribute-names posted from form
-            array_keys($post),
-            // add to list if the attribute is a safe relation
-            function ($attribute) use ($model, $relationNames) {
-                return in_array($attribute, $relationNames) && $model->isAttributeSafe($attribute);
-            }
-        );
-
-        foreach ($allowedRelations as $relationName) {
-
-            $futureOutEdges = $post[$relationName];
-
-            $isFutureOutEdgesEmpty = empty($futureOutEdges);
-
-            // Delete all outEdges for the relation if none is present in
-            // form and the model has some outEdges (ie user removed edges)
-            if ($isFutureOutEdgesEmpty && count($model->{$relationName}) > 0) {
-
-                Edge::model()->deleteAllByAttributes(array(
-                    'from_node_id' => $node->id,
-                    'relation' => $relationName,
-                ));
-            }
-
-            if ($isFutureOutEdgesEmpty) {
-                $futureOutEdges = array();
-            }
-
-            $this->deleteEdgeDiff($model, $futureOutEdges, $relationName);
-
-            // TODO: fetch weights properly when they are implemented in form
-
-            $weight = 0;
-            foreach ($futureOutEdges as $toNodeId) {
-                $this->addEdge($node->id, $toNodeId, $relationName, $weight++);
-            }
-
-        }
-    }
-
-    /**
-     * Deletes the edges which are present but not in future-edges
-     *
-     * @param $model ActiveRecord
-     * @param $futureEdges array
-     * @param $relationName string
-     * @return int number of edges deleted
-     */
-    protected function deleteEdgeDiff(ActiveRecord $model, array $futureEdges, $relationName)
-    {
-        // {1,2,3}
-        $currentOutEdges = $model->getRelatedModelColumnValues($relationName, 'id');
-
-        // {1,2,3} complement {2,3,4} = {1}
-        $edgesToDelete = array_diff($currentOutEdges, $futureEdges);
-
-        $criteria = new CDbCriteria();
-        $criteria->addCondition('from_node_id = :from');
-        $criteria->addCondition('relation = :relation');
-        $criteria->addInCondition('to_node_id', $edgesToDelete);
-        $criteria->params[':from'] = $model->node()->id;
-        $criteria->params[':relation'] = $relationName;
-
-        return Edge::model()->deleteAll($criteria);
-    }
-
-    private function addEdge($fromNodeId, $toNodeId, $relation, $weight = null)
-    {
-        $edge = Edge::model()->findByAttributes(array(
-            'from_node_id' => $fromNodeId,
-            'to_node_id' => $toNodeId,
-            'relation' => $relation,
-        ));
-
-        // Nothing has changed
-        if ($edge !== null && $weight === null) {
-            return;
-        }
-
-        if ($edge === null) {
-            $edge = new Edge();
-        }
-
-        $edge->from_node_id = $fromNodeId;
-        $edge->to_node_id = $toNodeId;
-        $edge->relation = $relation;
-
-        if ($weight !== null) {
-            $edge->weight = $weight;
-        }
-
-        if (!$edge->save()) {
-            throw new SaveException($edge);
-        }
-        return true;
     }
 
     /**
