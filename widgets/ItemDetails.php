@@ -46,9 +46,13 @@ class ItemDetails extends CWidget
      */
     public function getAttributeValue($attribute)
     {
-        return $this->model->hasAttribute($attribute) || $this->model->handlesProperty($attribute)
-            ? e($this->model->{$attribute})
-            : '';
+        if (!($this->model->hasAttribute($attribute) || $this->model->handlesProperty($attribute))) {
+            return '';
+        }
+        if (is_array($this->model->{$attribute})) {
+            return 'not-a-string';
+        }
+        return e($this->model->{$attribute});
     }
 
     /**
