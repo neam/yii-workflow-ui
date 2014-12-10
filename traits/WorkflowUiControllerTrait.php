@@ -394,7 +394,7 @@ trait WorkflowUiControllerTrait
             }
             $behaviors = $item->behaviors();
             if (isset($behaviors['yii-qa-state'])) {
-                $item->refreshQaState();
+                $item->refreshQaState(MetaData::qaStateCoreScenarios());
             }
             $message = "{$this->modelClass} Added";
 
@@ -432,7 +432,7 @@ trait WorkflowUiControllerTrait
         }
 
         if (isset($behaviors['yii-qa-state'])) {
-            $item->refreshQaState();
+            $item->refreshQaState(MetaData::qaStateCoreScenarios());
         }
 
         $message = "{$this->modelClass} Added";
@@ -484,7 +484,7 @@ trait WorkflowUiControllerTrait
         $model = $this->loadModel($id);
         $model->scenario = $this->scenario;
         $this->performAjaxValidation($model);
-        $this->saveAndContinueOnSuccess($model);
+        $this->saveAndContinueOnSuccess($model, MetaData::qaStateCoreScenarios());
         $stepCaptions = $model->flowStepCaptions();
         $this->render('vendor.neam.yii-workflow-ui.themes.simplicity.views._item.edit', array('model' => $model, 'step' => $step, 'stepCaption' => $stepCaptions[$step]));
     }
@@ -500,7 +500,7 @@ trait WorkflowUiControllerTrait
         $model = $this->loadModel($id);
         $model->scenario = $this->scenario;
         $this->performAjaxValidation($model);
-        $this->saveAndContinueOnSuccess($model);
+        $this->saveAndContinueOnSuccess($model, MetaData::qaStateCoreScenarios());
         $this->populateWorkflowData($model, 'reviewable', Yii::t('app', 'Prepare for Review'));
         $stepCaptions = $model->flowStepCaptions();
 
@@ -532,7 +532,7 @@ trait WorkflowUiControllerTrait
         if (!$qaState->save()) {
             throw new SaveException($qaState);
         }
-        $model->refreshQaState();
+        $model->refreshQaState(MetaData::qaStateCoreScenarios());
 
         // redirect
         if (isset($_GET['returnUrl'])) {
@@ -554,7 +554,7 @@ trait WorkflowUiControllerTrait
         $model = $this->loadModel($id);
         $model->scenario = $this->scenario;
         $this->performAjaxValidation($model);
-        $this->saveAndContinueOnSuccess($model);
+        $this->saveAndContinueOnSuccess($model, MetaData::qaStateCoreScenarios());
         $this->populateWorkflowData($model, "evaluate", Yii::t('app', 'Evaluate'));
         $stepCaptions = $model->flowStepCaptions();
         $this->_actionIsEvaluate = true;
@@ -583,7 +583,7 @@ trait WorkflowUiControllerTrait
         $model = $this->loadModel($id);
         $model->scenario = $this->scenario;
         $this->performAjaxValidation($model);
-        $this->saveAndContinueOnSuccess($model);
+        $this->saveAndContinueOnSuccess($model, MetaData::qaStateCoreScenarios());
         $this->populateWorkflowData($model, 'publishable', Yii::t('app', 'Prepare for Publishing'));
         $stepCaptions = $model->flowStepCaptions();
 
@@ -610,7 +610,7 @@ trait WorkflowUiControllerTrait
         if (!$qaState->save()) {
             throw new SaveException($qaState);
         }
-        $model->refreshQaState();
+        $model->refreshQaState(MetaData::qaStateCoreScenarios());
 
         // redirect
         if (isset($_GET['returnUrl'])) {
@@ -675,7 +675,7 @@ trait WorkflowUiControllerTrait
     {
 
         $model = $this->loadModel($id);
-        $model->refreshQaState();
+        //$model->refreshQaState(MetaData::qaStateCoreScenarios());
 
         $model->makeNodeHasGroupHidden();
 
@@ -730,7 +730,7 @@ trait WorkflowUiControllerTrait
         }
 
         $this->performAjaxValidation($model);
-        $this->saveAndContinueOnSuccess($model);
+        $this->saveAndContinueOnSuccess($model, MetaData::qaStateCoreScenarios());
 
         $this->populateWorkflowData($model, null, Yii::t('app', 'Edit'));
         $stepCaptions = $model->flowStepCaptions();
@@ -926,13 +926,13 @@ trait WorkflowUiControllerTrait
 
     public function actionRemove($id)
     {
-        $model = $this->saveAndContinueOnSuccess($id);
+        $model = $this->saveAndContinueOnSuccess($id, MetaData::qaStateCoreScenarios());
         $this->render('vendor.neam.yii-workflow-ui.themes.simplicity.views._item.remove', array('model' => $model));
     }
 
     public function actionReplace($id)
     {
-        $model = $this->saveAndContinueOnSuccess($id);
+        $model = $this->saveAndContinueOnSuccess($id, MetaData::qaStateCoreScenarios());
         $this->render('vendor.neam.yii-workflow-ui.themes.simplicity.views._item.replace', array('model' => $model));
     }
 
@@ -973,7 +973,7 @@ trait WorkflowUiControllerTrait
         $model = $this->loadModel($id);
         $model->scenario = $this->scenario;
         $this->performAjaxValidation($model);
-        $this->saveAndContinueOnSuccess($model);
+        $this->saveAndContinueOnSuccess($model, array(LanguageHelper::qaStateTranslateScenario($translateInto)));
         $this->populateWorkflowData($model, 'translate_into_' . $translateInto, Yii::t('app', 'Translate into {translateIntoLanguage}', array(
             '{translateIntoLanguage}' => LanguageHelper::getName($translateInto),
         )), $translateInto);
@@ -1146,9 +1146,10 @@ trait WorkflowUiControllerTrait
     /**
      * Saves a model and
      * @param $model
+     * @param array $scenarios Array of $scenarios to consider when calculating progress. If not specified, all scenarios will be recalculated, which may take quite some time
      * @return mixed
      */
-    protected function saveAndContinueOnSuccess($model)
+    protected function saveAndContinueOnSuccess($model, $scenarios = null)
     {
         $_POST = $this->fixPostFromGrid($_POST);
 
@@ -1159,7 +1160,7 @@ trait WorkflowUiControllerTrait
 
         if (isset($_POST[$this->modelClass])) {
             $model->attributes = $_POST[$this->modelClass];
-            $model->saveAppropriately();
+            $model->saveAppropriately($scenarios);
         } elseif (isset($_GET[$this->modelClass])) {
             $model->attributes = $_GET[$this->modelClass];
         }
