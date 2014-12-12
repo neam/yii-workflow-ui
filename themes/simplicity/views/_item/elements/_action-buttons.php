@@ -21,7 +21,7 @@
             ); ?>
         <?php endif; ?>
         */ ?>
-        <?php if (!$model->qaState()->allow_review): ?>
+        <?php if ($model->qaState()->allow_review === null || $model->qaState()->allow_review): ?>
             <?php $this->widget(
                 '\TbButton',
                 array(
@@ -39,7 +39,7 @@
         <?php else: ?>
             <?php // TODO: Action to prevent review. ?>
         <?php endif; ?>
-        <?php if (!$model->qaState()->allow_publish): ?>
+        <?php if ($model->qaState()->allow_publish === null || $model->qaState()->allow_publish): ?>
             <?php $this->widget(
                 '\TbButton',
                 array(
