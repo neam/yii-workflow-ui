@@ -239,8 +239,8 @@ class ItemEditUi extends CWidget
             : Yii::t('app', $this->model->modelLabel, 1);
 
         return $this->isFinalStep()
-            ? Yii::t('app', 'Save {subject}', array('{subject}' => $subject))
-            : Yii::t('app', 'Next Step');
+            ? Yii::t('app', 'Save and view {subject}', array('{subject}' => $subject))
+            : Yii::t('app', 'Save and continue to next step');
     }
 
     /**
