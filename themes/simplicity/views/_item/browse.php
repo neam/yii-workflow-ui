@@ -23,6 +23,7 @@ if (empty($this->menu)) {
             'dataProvider' => $dataProvider,
             'template' => $this->renderPartial('vendor.neam.yii-workflow-ui.themes.simplicity.views._item.listview-template', null, true),
             'itemView' => 'vendor.neam.yii-workflow-ui.themes.simplicity.views._item._list-item',
+            'enableHistory' => 'true',
             'pager' => array(
                 'class' => '\TbPager',
                 'size' => TbHtml::PAGINATION_SIZE_SMALL,
