@@ -3,15 +3,13 @@
 class WorkflowUi extends CComponent
 {
 
-    // Theme constants
-    const THEME_FRONTEND = 'frontend';
-    const THEME_BACKEND2 = 'backend2';
-
     // View layout constants
     const LAYOUT_MAIN = 'vendor.neam.yii-simplicity-theme.views.layouts.main';
     const LAYOUT_REGULAR = 'vendor.neam.yii-simplicity-theme.views.layouts.regular';
     const LAYOUT_MINIMAL = 'vendor.neam.yii-simplicity-theme.views.layouts.minimal';
     const LAYOUT_NARROW = 'vendor.neam.yii-simplicity-theme.views.layouts.narrow';
+    const LAYOUT_FLUID = 'vendor.neam.yii-simplicity-theme.views.layouts.fluid';
+    const LAYOUT_POPUP = 'vendor.neam.yii-simplicity-theme.views.layouts.popup';
 
     /**
      * @var string application version
