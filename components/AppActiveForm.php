@@ -108,6 +108,7 @@ class AppActiveForm extends TbActiveForm
         // Valid base attributes for SlugIt IDs from which slugs are created
         $slugitFromAttributes = array(
             'title',
+            'heading',
             'question',
         );
 
