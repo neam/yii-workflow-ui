@@ -204,13 +204,13 @@ EOF;
     }
 
     /**
-   	 * Generates a tooltip. (This overrides the currently faulty TbHtml::tooltip() method.)
-   	 * @param string $label the tooltip link label text.
-   	 * @param mixed $url the link url.
-   	 * @param string $content the tooltip content text.
-   	 * @param array $htmlOptions additional HTML attributes.
-   	 * @return string the generated tooltip.
-   	 */
+     * Generates a tooltip. (This overrides the currently faulty TbHtml::tooltip() method.)
+     * @param string $label the tooltip link label text.
+     * @param mixed $url the link url.
+     * @param string $content the tooltip content text.
+     * @param array $htmlOptions additional HTML attributes.
+     * @return string the generated tooltip.
+     */
     static public function tooltip($label, $url, $content, $htmlOptions = array())
     {
         $htmlOptions['data-toggle'] = 'tooltip'; // this option is missing from TbHtml::tooltip()
