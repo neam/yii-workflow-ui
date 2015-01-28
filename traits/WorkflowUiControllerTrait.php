@@ -751,6 +751,7 @@ trait WorkflowUiControllerTrait
             'stepCaption' => $stepCaptions[$step],
             'requiredCounts' => $requiredCounts,
         ));
+
     }
 
     /**
@@ -977,7 +978,15 @@ trait WorkflowUiControllerTrait
         $this->populateWorkflowData($model, 'translate_into_' . $translateInto, Yii::t('app', 'Translate into {translateIntoLanguage}', array(
             '{translateIntoLanguage}' => LanguageHelper::getName($translateInto),
         )), $translateInto);
+
         $stepCaptions = $model->flowStepCaptions();
+
+        $this->setPageTitle(array(
+            Yii::t('model', $this->modelClass),
+            $this->workflowData['caption'],
+        ));
+
+        $requiredCounts = $this->getRequiredCounts($id);
 
         /** @var Controller|WorkflowUiControllerTrait $this */
         $this->buildBreadcrumbs($this->itemBreadcrumbs($model));
@@ -988,8 +997,10 @@ trait WorkflowUiControllerTrait
                 'model' => $model,
                 'step' => $step,
                 'stepCaption' => $stepCaptions[$step],
+                'requiredCounts' => $requiredCounts,
             )
         );
+
     }
 
     /**
@@ -1065,7 +1076,7 @@ trait WorkflowUiControllerTrait
         foreach ($item->flowSteps() as $step => $fields) {
 
             if ($this->action->id == "translate" && $translateInto !== null) {
-                if (!$this->isStepTranslatable($item, $fields)) {
+                if (!$item->isStepTranslatable($fields)) {
                     continue;
                 }
                 //$stepProgress = $item->calculateValidationProgress('into_' . $translateInto . "-step_" . $step);
@@ -1093,26 +1104,6 @@ trait WorkflowUiControllerTrait
         $this->workflowData["stepActions"] = $stepActions;
         $this->workflowData["flagTriggerActions"] = $flagTriggerActions;
 
-    }
-
-    /**
-     * @param $item
-     * @param $fields
-     * @return bool
-     */
-    public function isStepTranslatable($item, $fields)
-    {
-        $currentlyTranslatableAttributes = $item->getCurrentlyTranslatableAttributes();
-
-        $numTranslatableAttributes = count($fields);
-        foreach ($fields as $field) {
-            $sourceLanguageContentAttribute = str_replace('_' . $item->source_language, '', $field);
-            if (!in_array($sourceLanguageContentAttribute, $currentlyTranslatableAttributes)) {
-                $numTranslatableAttributes--;
-            }
-        }
-
-        return $numTranslatableAttributes > 0;
     }
 
     // $fromid = [item] id, $toid = [node] id ! important
@@ -1240,7 +1231,7 @@ trait WorkflowUiControllerTrait
     {
         $steps = array();
         foreach ($model->flowSteps() as $step => $fields) {
-            if ($this->isTranslateAction() && !$this->isStepTranslatable($model, $fields)) {
+            if ($this->isTranslateAction() && !$model->isStepTranslatable($fields)) {
                 continue;
             }
             $steps[] = $step;

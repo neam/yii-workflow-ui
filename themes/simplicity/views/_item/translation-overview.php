@@ -10,7 +10,7 @@
 ); ?>
 <div class="<?php echo $this->getCssClasses($model); ?>">
     <?php $this->renderPartial(
-        'vendor.neam.yii-workflow-ui.themes.simplicity.views._item.elements/_flowbar',
+        'vendor.neam.yii-workflow-ui.themes.simplicity.views.ItemEditUi._flowbar',
         compact('model', 'workflowCaption', 'form')
     ); ?>
     <div class="after-flowbar">

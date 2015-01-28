@@ -42,11 +42,7 @@
         </div>
     </div>
     <div class="flowbar-content">
-        <?php if ($this->actionUsesEditWorkflow()): ?>
-            <?php $this->renderPartial('vendor.neam.yii-workflow-ui.themes.simplicity.views._item.elements/_action-buttons', compact('model')); ?>
-        <?php else: ?>
-            <?php $this->renderPartial('vendor.neam.yii-workflow-ui.themes.simplicity.views._item.elements/_required-workflow', compact('model')); ?>
-        <?php endif; ?>
+        <?php $this->renderPartial('vendor.neam.yii-workflow-ui.themes.simplicity.views._item.elements/_action-buttons', compact('model')); ?>
     </div>
     <div class="flowbar-foot">
         <div class="foot-text">

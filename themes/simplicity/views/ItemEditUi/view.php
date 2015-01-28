@@ -69,7 +69,7 @@ $stepCaption = $this->controller->workflowData['caption'];
     </div>
 </div>
 
-<?php $this->controller->renderPartial('vendor.neam.yii-workflow-ui.themes.simplicity.views._item.edit/_flowbar', compact('model')); ?>
+<?php $this->controller->renderPartial('vendor.neam.yii-workflow-ui.themes.simplicity.views.ItemEditUi._flowbar', compact('model')); ?>
 
 <?php if (in_array($this->actionPartialView, array('_prepareForPublishing', '_prepareForReview'))): ?>
     <?php if (in_array($this->actionPartialView, array('_prepareForPublishing', '_prepareForReview'))): ?>

@@ -3,11 +3,13 @@
     <div class="row-column">
         <div class="item-well">
             <div class="item-content">
-                <div class="content-primary">
+                <div class="content-secondary">
+                    <?php /*
                     <div class="content-header">
                         <h2 class="action-heading">
                             <?php echo $this->getActionHeading(); ?>
                         </h2>
+                        <?php if ($this->getCurrentWorkflowProgress() !== null): ?>
                         <div class="action-progress">
                             <div class="progress-bar-container">
                                 <?php $this->widget(
@@ -25,6 +27,7 @@
                                 ); ?>
                             </div>
                         </div>
+                        <?php endif; ?>
                     </div>
                     <div class="item-preview">
                         <?php if (get_class($this->model) === 'VideoFile' && $this->step === $this::STEP_SUBTITLES): ?>
@@ -38,6 +41,8 @@
                     </div>
                 </div>
                 <div class="content-secondary">
+                    */
+                    ?>
                     <div class="content-header">
                         <div class="action-title-row">
                             <div class="action-title">
