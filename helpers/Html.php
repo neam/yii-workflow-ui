@@ -395,7 +395,7 @@ EOF;
 
     /**
      * Renders an array of errors as an unordered list.
-     * @param array $errors list of errors (as attribute => message)
+     * @param array $errors list of errors (as returned by model->getErrors())
      * @param string $intro the introductory error message. Defaults to 'Please correct the following errors:'.
      * @return string
      */
@@ -411,9 +411,10 @@ EOF;
 
             $html .= "<p>$intro</p>";
             $html .= '<ul>';
-            foreach ($errors as $error) {
-                $html .= "<li>$error</li>";
-
+            foreach ($errors as $attribute => $errorMessages) {
+                foreach ($errorMessages as $errorMessage) {
+                    $html .= "<li title=\"$attribute\">$errorMessage</li>";
+                }
             }
             $html .= '</ul>';
         }

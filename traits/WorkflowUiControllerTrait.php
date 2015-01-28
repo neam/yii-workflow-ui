@@ -1157,20 +1157,7 @@ trait WorkflowUiControllerTrait
         }
 
         if ($model->hasErrors()) {
-            // TODO: Figure out why error data needs to be restructured like this.
-            $errors = array_map(
-                function ($v) {
-                    return join(', ', $v);
-                },
-                $model->getErrors()
-            );
-
-            // TODO: Figure out why the id attribute contains array data as a string.
-            if (isset($errors['id'])) {
-                unset($errors['id']);
-            }
-
-            Yii::app()->user->setFlash(TbHtml::ALERT_COLOR_DANGER, Html::renderValidationErrors($errors));
+            Yii::app()->user->setFlash(TbHtml::ALERT_COLOR_DANGER, Html::renderValidationErrors($model->getErrors()));
         }
 
         if ($model->hasErrors() || empty($_POST)) {
