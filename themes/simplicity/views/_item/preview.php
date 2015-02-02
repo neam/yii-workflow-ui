@@ -8,7 +8,7 @@
     '_preview',
     array(
         'preview' => true,
-        'model' => $model,
+        'data' => $model,
     )
 ); ?>
 <?php if ($this->showBackToTranslationButton()): ?>
