@@ -1175,9 +1175,9 @@ trait WorkflowUiControllerTrait
                         'Done translating. Please look for more items to translate under {link}.',
                         array(
                             '{link}' => \TbHtml::link(
-                                \Yii::t('app', 'My Tasks'),
-                                \Yii::app()->createUrl('/profile/tasks')
-                            ),
+                                    \Yii::t('app', 'My Tasks'),
+                                    \Yii::app()->createUrl('/profile/tasks')
+                                ),
                         )
                     )
                 );
