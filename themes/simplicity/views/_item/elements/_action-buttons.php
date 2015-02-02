@@ -20,6 +20,36 @@
                 )
             ); ?>
         <?php endif; ?>
+        <?php $this->widget(
+            '\TbButton',
+            array(
+                'label' => Yii::t('app', 'View'),
+                'color' => $this->action->id === 'view' ? 'inverse' : null, // TODO: no inverse buttons in BS3 http://getbootstrap.com/css/#buttons
+                'size' => TbHtml::BUTTON_SIZE_MINI,
+                'url' => array(
+                    'view',
+                    'id' => $model->{$model->tableSchema->primaryKey},
+                    'step' => $model->firstFlowStep(),
+                ),
+                'visible' => Yii::app()->user->checkModelOperationAccess($model, 'View'),
+            )
+        ); ?>
+        <?php $this->widget(
+            '\TbButton',
+            array(
+                'label' => Yii::t('app', 'Preview'),
+                'color' => $this->action->id === 'preview' ? 'inverse' : null, // TODO: no inverse buttons in BS3 http://getbootstrap.com/css/#buttons
+                'size' => TbHtml::BUTTON_SIZE_MINI,
+                'url' => array(
+                    'preview',
+                    'id' => $model->{$model->tableSchema->primaryKey},
+                    'step' => $model->firstFlowStep(),
+                ),
+                'visible' => Yii::app()->user->checkModelOperationAccess($model, 'Preview'),
+            )
+        ); ?>
+    </div>
+    <div class="btn-group">
         <?php /*
         <?php if (!$model->qaState()->draft_saved): ?>
             <?php $this->widget(
