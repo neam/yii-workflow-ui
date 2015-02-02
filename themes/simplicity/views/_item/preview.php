@@ -5,7 +5,7 @@
 <?php $workflowCaption = Yii::t('app', 'Preview'); ?>
 <?php $this->setPageTitle(Yii::t('model', $this->modelClass) . ' - ' . $workflowCaption); ?>
 <?php $this->renderPartial(
-    'view',
+    '_preview',
     array(
         'preview' => true,
         'model' => $model,

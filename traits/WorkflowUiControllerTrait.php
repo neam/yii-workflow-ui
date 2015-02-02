@@ -341,6 +341,25 @@ trait WorkflowUiControllerTrait
     */
 
     /**
+     * @param $id
+     */
+    public function actionView($id)
+    {
+        $model = $this->loadModel($id);
+
+        /** @var Controller|WorkflowUiControllerTrait $this */
+        $this->buildBreadcrumbs($this->itemBreadcrumbs($model));
+
+        $this->render(
+            'vendor.neam.yii-workflow-ui.themes.simplicity.views._item.view',
+            array(
+                'model' => $model,
+                'detailedView' => 'vendor.neam.yii-workflow-ui.themes.simplicity.views._item._view',
+            )
+        );
+    }
+
+    /**
      * Renders the browse page.
      */
     public function actionBrowse()
@@ -632,7 +651,12 @@ trait WorkflowUiControllerTrait
         /** @var Controller|WorkflowUiControllerTrait $this */
         $this->buildBreadcrumbs($this->itemBreadcrumbs($model));
 
-        $this->render('vendor.neam.yii-workflow-ui.themes.simplicity.views._item.preview', array('model' => $model, 'workflowCaption' => Yii::t('app', 'Preview')));
+        $this->render('vendor.neam.yii-workflow-ui.themes.simplicity.views._item.preview',
+            array(
+                'model' => $model,
+                'workflowCaption' => Yii::t('app', 'Preview')
+            )
+        );
     }
 
     public function actionProofread($id)

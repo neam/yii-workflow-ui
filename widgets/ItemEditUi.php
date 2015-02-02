@@ -184,7 +184,7 @@ class ItemEditUi extends CWidget
             $nextStepAction = $stepActions[$nextStepIndex];
             $url = $this->createFormActionUrlForStep($nextStepAction['step']);
         } else {
-            $url = Html::normalizeUrl(array('preview', 'id' => $this->model->id));
+            $url = Html::normalizeUrl(array('view', 'id' => $this->model->id));
         }
 
         return $url;
