@@ -4,6 +4,22 @@
 ?>
 <div class="action-buttons">
     <div class="btn-group">
+        <?php if (!$model->isPublishable()): ?>
+            <?php $this->widget(
+                '\TbButton',
+                array(
+                    'label' => Yii::t('app', 'Edit'),
+                    'color' => $this->action->id === 'edit' ? 'inverse' : null, // TODO: no inverse buttons in BS3 http://getbootstrap.com/css/#buttons
+                    'size' => TbHtml::BUTTON_SIZE_MINI,
+                    'url' => array(
+                        'edit',
+                        'id' => $model->{$model->tableSchema->primaryKey},
+                        'step' => $model->firstFlowStep(),
+                    ),
+                    'visible' => Yii::app()->user->checkModelOperationAccess($model, 'Edit'),
+                )
+            ); ?>
+        <?php endif; ?>
         <?php /*
         <?php if (!$model->qaState()->draft_saved): ?>
             <?php $this->widget(
