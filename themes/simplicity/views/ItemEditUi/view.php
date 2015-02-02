@@ -55,6 +55,18 @@
             'visible' => Yii::app()->user->checkModelOperationAccess($model, 'View'),
         )
     ); ?>
+    <?php echo TbHtml::linkbutton(
+        Yii::t('app', 'Preview'),
+        array(
+            'class' => 'preview-button',
+            'url' => array(
+                'preview',
+                'id' => $this->model->{$this->model->tableSchema->primaryKey},
+                'editingUrl' => Yii::app()->request->url,
+            ),
+            'visible' => Yii::app()->user->checkModelOperationAccess($model, 'Preview'),
+        )
+    ); ?>
 
 </div>
 
