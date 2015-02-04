@@ -5,6 +5,7 @@ trait WorkflowUiControllerTrait
     public $workflowData = array();
     public $step;
     public $modelId;
+    public $scenario;
     protected $_actionIsEvaluate = false;
 
     /**
