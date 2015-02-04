@@ -1100,7 +1100,7 @@ trait WorkflowUiControllerTrait
         foreach ($item->flowSteps() as $step => $fields) {
 
             if ($this->action->id == "translate" && $translateInto !== null) {
-                if (!$item->isStepTranslatable($fields)) {
+                if (!$item->anyCurrentlyTranslatable($fields)) {
                     continue;
                 }
                 //$stepProgress = $item->calculateValidationProgress('into_' . $translateInto . "-step_" . $step);
@@ -1242,7 +1242,7 @@ trait WorkflowUiControllerTrait
     {
         $steps = array();
         foreach ($model->flowSteps() as $step => $fields) {
-            if ($this->isTranslateAction() && !$model->isStepTranslatable($fields)) {
+            if ($this->isTranslateAction() && !$model->anyCurrentlyTranslatable($fields)) {
                 continue;
             }
             $steps[] = $step;
