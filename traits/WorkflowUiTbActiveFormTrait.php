@@ -40,9 +40,9 @@ trait WorkflowUiTbActiveFormTrait
      * @param array $fieldOptions
      * @return string
      */
-    public function translateTextFieldControlGroup($model, $attribute, $translateInto, $controllerAction, $fieldOptions = array())
+    public function translateTextFieldControlGroup($model, $attribute, $controllerAction, $fieldOptions = array())
     {
-        return $this->translateFieldControlGroup($model, $attribute, $translateInto, $controllerAction, TbHtml::INPUT_TYPE_TEXT, $fieldOptions);
+        return $this->translateFieldControlGroup($model, $attribute, $controllerAction, TbHtml::INPUT_TYPE_TEXT, $fieldOptions);
     }
 
     /**
@@ -54,9 +54,37 @@ trait WorkflowUiTbActiveFormTrait
      * @param array $fieldOptions
      * @return string
      */
-    public function translateTextAreaControlGroup($model, $attribute, $translateInto, $controllerAction, $fieldOptions = array())
+    public function translateTextAreaControlGroup($model, $attribute, $controllerAction, $fieldOptions = array())
     {
-        return $this->translateFieldControlGroup($model, $attribute, $translateInto, $controllerAction, TbHtml::INPUT_TYPE_TEXTAREA, $fieldOptions);
+        return $this->translateFieldControlGroup($model, $attribute, $controllerAction, TbHtml::INPUT_TYPE_TEXTAREA, $fieldOptions);
+    }
+
+    /**
+     * Creates a multi text field control group for a translatable attribute.
+     * @param ActiveRecord|ItemTrait $model
+     * @param string $attribute
+     * @param string $translateInto
+     * @param string $controllerAction
+     * @param array $fieldOptions
+     * @return string
+     */
+    public function textFieldControlGroup($model, $attribute, $fieldOptions = array())
+    {
+        return $this->fieldControlGroup($model, $attribute, TbHtml::INPUT_TYPE_TEXT, $fieldOptions);
+    }
+
+    /**
+     * Creates a multi textarea field control group for a translatable attribute.
+     * @param ActiveRecord|ItemTrait $model
+     * @param string $attribute
+     * @param string $translateInto
+     * @param string $controllerAction
+     * @param array $fieldOptions
+     * @return string
+     */
+    public function textAreaControlGroup($model, $attribute, $fieldOptions = array())
+    {
+        return $this->fieldControlGroup($model, $attribute, TbHtml::INPUT_TYPE_TEXTAREA, $fieldOptions);
     }
 
     /**
@@ -90,93 +118,112 @@ trait WorkflowUiTbActiveFormTrait
      * @param ActiveRecord|ItemTrait $model
      * @param string $attribute
      * @param string $translateInto
-     * @param string $controllerAction
      * @param string $inputType
      * @param array $fieldOptions
      * @return string
      */
-    public function translateFieldControlGroup($model, $attribute, $translateInto, $controllerAction, $inputType, $fieldOptions = array())
+    public function translateFieldControlGroup($model, $attribute, $translateInto, $inputType, $fieldOptions = array())
     {
         $attributeSourceLanguage = $attribute . '_' . $model->source_language;
         $attributeTranslateInto = $attribute . '_' . $translateInto;
 
         // TODO: Add support for dynamic htmlOptions.
+        $htmlOptions = $this->fieldControlGroupHtmlOptions($originalAttribute);
+
+        // Get hint
+        if (isset($fieldOptions['hint']) && $fieldOptions['hint']) {
+            $htmlOptions['label'] = Html::attributeLabelWithTooltip($model, $attributeTranslateInto, $attribute);
+        } else {
+            $htmlOptions['label'] = $model->getAttributeLabel($attributeTranslateInto);
+        }
+
+        // Disable translation field if the original value is empty
+        if (empty($model->{$attributeSourceLanguage})) {
+            $htmlOptions['disabled'] = true;
+            return; // do not render at all
+        }
+
+        $html = Html::activeStaticTextFieldControlGroup(
+            $model,
+            $attributeSourceLanguage,
+            $htmlOptions
+        );
+
+        $html .= $this->createInput(
+            $inputType,
+            $model->edited(),
+            $attributeTranslateInto,
+            $htmlOptions
+        );
+
+        $errorOptions = TbArray::popValue('errorOptions', $htmlOptions, array());
+
+        if ($model->hasErrors($attributeTranslateInto)) {
+            TbHtml::addCssClass('error', $errorOptions);
+            $html .= $this->error($model, $attributeTranslateInto, $errorOptions);
+        }
+
+        return $html;
+    }
+
+    /**
+     * @param $model
+     * @param $attribute
+     * @param $inputType
+     * @param array $fieldOptions
+     * @return string
+     */
+    public function fieldControlGroup($model, $attribute, $inputType, $fieldOptions = array())
+    {
+
+        if ($model->anyTranslatable(array($attribute))) {
+            $attributeSourceLanguage = $attribute . '_' . $model->source_language;
+            $originalAttribute = $attribute;
+            $attribute = $attributeSourceLanguage;
+        } else {
+            $originalAttribute = $attribute;
+        }
+
+        // TODO: Add support for dynamic htmlOptions.
+        $htmlOptions = $this->fieldControlGroupHtmlOptions($originalAttribute);
+
+        // Get hint
+        if (isset($fieldOptions['hint']) && $fieldOptions['hint']) {
+            $htmlOptions['label'] = Html::attributeLabelWithTooltip($model, $attribute, $originalAttribute);
+        }
+
+        // Bind slug field
+        Html::jsSlugIt(array(
+            '.slugit-from-1' => '.slugit-to-1',
+        ));
+
+        return $this->createControlGroup($inputType, $model, $attribute, $htmlOptions);
+    }
+
+    public function fieldControlGroupHtmlOptions($originalAttribute)
+    {
+
+        // TODO: Add support for dynamic htmlOptions.
         $htmlOptions = array();
 
         // Valid base attributes for SlugIt IDs from which slugs are created
-        $slugitFromAttributes = array(
-            'title',
-            'heading',
-            'question',
-        );
+        $slugitFromAttributes = Yii::app()->workflowUi->slugitFromAttributes;
+        $slugitToAttributes = Yii::app()->workflowUi->slugitToAttributes;
 
-        if ($controllerAction === self::CONTROLLER_ACTION_TRANSLATE) {
-            // Auto-generate slug from title
-            if (in_array($attribute, $slugitFromAttributes) && !isset($fieldOptions['disableSlug'])) {
-                $htmlOptions['class'] = Html::ITEM_FORM_FIELD_CLASS . ' slugit-from-2';
-            } else if ($attribute === 'slug') {
-                $htmlOptions['class'] = Html::ITEM_FORM_FIELD_CLASS . ' slugit-to-2';
-            }
-
-            // Get hint
-            if (isset($fieldOptions['hint']) && $fieldOptions['hint']) {
-                $htmlOptions['label'] = Html::attributeLabelWithTooltip($model, $attributeTranslateInto, $attribute);
-            } else {
-                $htmlOptions['label'] = $model->getAttributeLabel($attributeTranslateInto);
-            }
-
-            // Bind slug field
-            Html::jsSlugIt(array(
-                '.slugit-from-2' => '.slugit-to-2',
-            ));
-
-            // Disable translation field if the original value is empty
-            if (empty($model->{$attributeSourceLanguage})) {
-                $htmlOptions['disabled'] = true;
-                return; // do not render at all
-            }
-
-            $html = Html::activeStaticTextFieldControlGroup(
-                $model,
-                $attributeSourceLanguage,
-                $htmlOptions
-            );
-
-            $html .= $this->createInput(
-                $inputType,
-                $model->edited(),
-                $attributeTranslateInto,
-                $htmlOptions
-            );
-
-            $errorOptions = TbArray::popValue('errorOptions', $htmlOptions, array());
-
-            if ($model->hasErrors($attributeTranslateInto)) {
-                TbHtml::addCssClass('error', $errorOptions);
-                $html .= $this->error($model, $attributeTranslateInto, $errorOptions);
-            }
-
-            return $html;
-        } else {
-            // Auto-generate slug from title
-            if (in_array($attribute, $slugitFromAttributes) && !isset($fieldOptions['disableSlug'])) {
-                $htmlOptions['class'] = Html::ITEM_FORM_FIELD_CLASS . ' slugit-from-1';
-            } else if ($attribute === 'slug') {
-                $htmlOptions['class'] = Html::ITEM_FORM_FIELD_CLASS . ' slugit-to-1';
-            }
-
-            // Get hint
-            if (isset($fieldOptions['hint']) && $fieldOptions['hint']) {
-                $htmlOptions['label'] = Html::attributeLabelWithTooltip($model, $attributeSourceLanguage, $attribute);
-            }
-
-            // Bind slug field
-            Html::jsSlugIt(array(
-                '.slugit-from-1' => '.slugit-to-1',
-            ));
-
-            return $this->createControlGroup($inputType, $model, $attributeSourceLanguage, $htmlOptions);
+        // Auto-generate slug from title
+        if (in_array($originalAttribute, $slugitFromAttributes) && !isset($fieldOptions['disableSlug'])) {
+            $htmlOptions['class'] = Html::ITEM_FORM_FIELD_CLASS . ' slugit-from-1';
+        } else if (in_array($originalAttribute, $slugitToAttributes) && !isset($fieldOptions['disableSlug'])) {
+            $htmlOptions['class'] = Html::ITEM_FORM_FIELD_CLASS . ' slugit-to-1';
         }
+
+        // Bind slug field
+        Html::jsSlugIt(array(
+            '.slugit-from-1' => '.slugit-to-1',
+        ));
+
+        return $htmlOptions;
+
     }
 
     /**

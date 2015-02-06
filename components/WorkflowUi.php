@@ -12,6 +12,20 @@ class WorkflowUi extends CComponent
     const LAYOUT_POPUP = 'vendor.neam.yii-simplicity-theme.views.layouts.popup';
 
     /**
+     * Valid base attributes for SlugIt IDs from which slugs are created
+     * @var array
+     */
+    public $slugitFromAttributes = array(
+        'title',
+        'heading',
+        'question',
+    );
+
+    public $slugitToAttributes = array(
+        'slug',
+    );
+
+    /**
      * @var string application version
      * TODO: Update this automatically.
      */
