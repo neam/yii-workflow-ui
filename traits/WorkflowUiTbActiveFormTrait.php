@@ -128,7 +128,7 @@ trait WorkflowUiTbActiveFormTrait
         $attributeTranslateInto = $attribute . '_' . $translateInto;
 
         // TODO: Add support for dynamic htmlOptions.
-        $htmlOptions = $this->fieldControlGroupHtmlOptions($originalAttribute);
+        $htmlOptions = $this->fieldControlGroupHtmlOptions($attribute);
 
         // Get hint
         if (isset($fieldOptions['hint']) && $fieldOptions['hint']) {

@@ -69,7 +69,7 @@
                         ); ?>
                     </div>
                     <div class="item-fields">
-                        <?php $this->controller->renderPartial('steps/' . $this->step, array(
+                        <?php $this->controller->renderPartial('translate/steps/' . $this->step, array(
                             'model' => $this->model,
                             'form' => $this->form,
                             'step' => $this->step,
