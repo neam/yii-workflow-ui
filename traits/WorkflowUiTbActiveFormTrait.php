@@ -176,7 +176,7 @@ trait WorkflowUiTbActiveFormTrait
     public function fieldControlGroup($model, $attribute, $inputType, $fieldOptions = array())
     {
 
-        if ($model->anyTranslatable(array($attribute))) {
+        if ($model->anyDirectlyTranslatable(array($attribute))) {
             $attributeSourceLanguage = $attribute . '_' . $model->source_language;
             $originalAttribute = $attribute;
             $attribute = $attributeSourceLanguage;
