@@ -870,6 +870,7 @@ trait WorkflowUiControllerTrait
         // clone attributes into a new object
         $attributes = $model->attributes;
         unset($attributes['id']);
+        unset($attributes['node_id']);
         $clone = $model->populateRecord($attributes);
 
         // reset qa states
