@@ -8,10 +8,10 @@
             <h2 class="header-title">
                 <?php echo $data->itemLabel; ?>
                 <small class="header-version">
-                    <?php echo Yii::t('app', 'Version') ?>: <?php echo $data->version; ?>
+                    <?php echo Yii::t('app', 'Version') ?>: <?php echo !isset($model->version) ? 'N/A' : $model->version; ?>
                 </small>
                 <small class="header-status">
-                    <?php echo Yii::t('app', 'Status'); ?>: <?php echo Yii::t(
+                    <?php echo Yii::t('app', 'Status'); ?>: <?php echo !isset($model->{$model->_getQaStateAttribute()}) ? 'N/A' : Yii::t(
                         'statuses',
                         $data->qaStateBehavior()->statusLabel
                     ); ?>

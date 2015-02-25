@@ -12,10 +12,10 @@
                     <?php echo $model->itemLabel; ?>
                     <small class="header-icon"><?php echo $this->itemDescriptionTooltip(); ?></small>
                     <small class="header-version">
-                        <?php echo Yii::t('app', 'Version') ?>: <?php echo $model->version; ?>
+                        <?php echo Yii::t('app', 'Version') ?>: <?php echo !isset($model->version) ? 'N/A' : $model->version; ?>
                     </small>
                     <small class="header-status">
-                        <?php echo Yii::t('app', 'Status'); ?>: <?php echo Yii::t(
+                        <?php echo Yii::t('app', 'Status'); ?>: <?php echo !isset($model->{$model->_getQaStateAttribute()}) ? 'N/A' : Yii::t(
                             'statuses',
                             $model->qaStateBehavior()->statusLabel
                         ); ?>
