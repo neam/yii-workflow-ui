@@ -378,7 +378,7 @@ trait WorkflowUiControllerTrait
 
         /** @var Controller $this */
         $this->buildBreadcrumbs(array(
-            Yii::t('app', $model->modelLabel, 2) => array('browse'),
+            ItemTypes::label($this->modelClass, 2) => array('browse'),
             Yii::t('app', 'Browse'),
         ));
 
@@ -1397,7 +1397,7 @@ trait WorkflowUiControllerTrait
         }
 
         $breadcrumbs = array();
-        $breadcrumbs[Yii::t('app', $model->modelLabel, 2)] = array('browse');
+        $breadcrumbs[ItemTypes::label(get_class($model), 2)] = array('browse');
         $breadcrumbs[$itemTitle] = array('view', 'id' => $model->id);
 
         switch ($this->action->id) {

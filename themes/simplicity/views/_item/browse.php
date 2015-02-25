@@ -13,7 +13,7 @@ if (empty($this->menu)) {
 */ ?>
 <div class="<?php echo $this->getCssClasses($model); ?>">
     <h1 class="page-title">
-        <?php echo Yii::t('model', $model->modelLabel, 2); ?>
+        <?php echo ItemTypes::label(get_class($model), 2); ?>
         <small><?php echo $this->itemDescriptionTooltip(); ?></small>
     </h1>
     <?php $this->renderPartial('vendor.neam.yii-workflow-ui.themes.simplicity.views._item.elements._browsebar', compact('model')); ?>

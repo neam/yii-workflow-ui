@@ -236,7 +236,7 @@ class ItemEditUi extends CWidget
     {
         $subject = $this->controller->action->id === 'translate'
             ? Yii::t('app', 'Translation')
-            : Yii::t('app', $this->model->modelLabel, 1);
+            : ItemTypes::label(get_class($this->model), 1);
 
         return $this->isFinalStep()
             ? Yii::t('app', 'Save and view {subject}', array('{subject}' => $subject))
