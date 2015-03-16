@@ -68,6 +68,25 @@ $this->widget(
 
 <?php endif; ?>
 
+<?php if (isset($data->fileRoutes)): ?>
+
+    <h2>File routes</h2>
+
+    <?php
+    foreach ($data->fileRoutes as $fileRoute):
+        ?>
+        <div class="btn-group">
+            <?php echo CHtml::link('<i class="glyphicon-view"></i> ' . Yii::t('model', 'Public link to {model} with route {route}', array('{model}' => Yii::t('model', 'Item'), '{route}' => $fileRoute->route)), str_replace("s3://", "http://", PUBLIC_FILES_S3_BUCKET) . $fileRoute->route, array('class' => '', 'target' => '_blank')); ?>
+        </div>
+    <?php
+    endforeach;
+    if (empty($data->fileRoutes)) {
+        echo Yii::t('app', 'No routes');
+    }
+    ?>
+
+<?php endif; ?>
+
 <?php if (Yii::app()->user->checkAccess('Developer')): ?>
     <div class="admin-container hide">
         <h3>Developer access</h3>
