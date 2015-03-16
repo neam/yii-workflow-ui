@@ -51,13 +51,13 @@ $this->widget(
 
 <?php if (isset($data->routes)): ?>
 
-    <h2>Try routes</h2>
+    <h2>Routes</h2>
 
     <?php
     foreach ($data->routes as $route):
         ?>
         <div class="btn-group">
-            <?php echo CHtml::link('<i class="glyphicon-view"></i> ' . Yii::t('model', 'View {model} in pages-desktop using route {route}', array('{model}' => Yii::t('model', 'Item'), '{route}' => $route->route)), PAGES_DESKTOP_BASE_URL . $route->route, array('class' => 'btn', 'target' => '_blank')); ?>
+            <?php echo CHtml::link('<i class="glyphicon-view"></i> ' . Yii::t('model', 'View {model} in pages-desktop using route {route}', array('{model}' => Yii::t('model', 'Item'), '{route}' => $route->route)), PAGES_DESKTOP_BASE_URL . $route->route, array('class' => '', 'target' => '_blank')); ?>
         </div>
     <?php
     endforeach;
@@ -66,11 +66,12 @@ $this->widget(
     }
     ?>
 
-    <?php if (Yii::app()->user->checkAccess('Developer')): ?>
-        <div class="admin-container hide">
-            <h3>Developer access</h3>
-            <?php echo CHtml::link('<i class="glyphicon-edit"></i> ' . Yii::t('model', 'Update {model}', array('{model}' => Yii::t('model', 'Slideshow File'))), array('profile/update', 'id' => $data->id, 'returnUrl' => Yii::app()->request->url), array('class' => 'btn')); ?>
-        </div>
-    <?php endif; ?>
-
 <?php endif; ?>
+
+<?php if (Yii::app()->user->checkAccess('Developer')): ?>
+    <div class="admin-container hide">
+        <h3>Developer access</h3>
+        <?php echo CHtml::link('<i class="glyphicon-edit"></i> ' . Yii::t('model', 'Update {model}', array('{model}' => Yii::t('model', 'Slideshow File'))), array('profile/update', 'id' => $data->id, 'returnUrl' => Yii::app()->request->url), array('class' => 'btn')); ?>
+    </div>
+<?php endif; ?>
+
