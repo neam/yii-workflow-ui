@@ -57,7 +57,7 @@ $this->widget(
     foreach ($data->routes as $route):
         ?>
         <div class="btn-group">
-            <?php echo CHtml::link('<i class="glyphicon-view"></i> ' . Yii::t('model', 'View {model} in pages-desktop using route {route}', array('{model}' => Yii::t('model', 'Item'), '{route}' => $route->route)), PAGES_DESKTOP_BASE_URL . $route->route, array('class' => '', 'target' => '_blank')); ?>
+            <?php echo CHtml::link('<i class="glyphicon-view"></i> ' . Yii::t('model', 'View {model} in pages-desktop using route {route}' . ($route->canonical ? " (Permalink)" : ""), array('{model}' => Yii::t('model', 'Item'), '{route}' => $route->route)), PAGES_DESKTOP_BASE_URL . $route->route, array('class' => '', 'target' => '_blank')); ?>
         </div>
     <?php
     endforeach;
@@ -76,7 +76,7 @@ $this->widget(
     foreach ($data->fileRoutes as $fileRoute):
         ?>
         <div class="btn-group">
-            <?php echo CHtml::link('<i class="glyphicon-view"></i> ' . Yii::t('model', 'Public link to {model} with route {route}', array('{model}' => Yii::t('model', 'Item'), '{route}' => $fileRoute->route)), str_replace("s3://", "http://", PUBLIC_FILES_S3_BUCKET) . $fileRoute->route, array('class' => '', 'target' => '_blank')); ?>
+            <?php echo CHtml::link('<i class="glyphicon-view"></i> ' . Yii::t('model', 'Public link to {model} with route {route}' . ($fileRoute->canonical ? " (Permalink)" : ""), array('{model}' => Yii::t('model', 'Item'), '{route}' => $fileRoute->route)), str_replace("s3://", "http://", PUBLIC_FILES_S3_BUCKET) . $fileRoute->route, array('class' => '', 'target' => '_blank')); ?>
         </div>
     <?php
     endforeach;
