@@ -953,8 +953,19 @@ trait WorkflowUiControllerTrait
 
     public function actionRemove($id)
     {
-        $model = $this->saveAndContinueOnSuccess($id, MetaData::qaStateCoreScenarios());
-        $this->render('vendor.neam.yii-workflow-ui.themes.simplicity.views._item.remove', array('model' => $model));
+        $model = $this->loadModel($id);
+        $model->scenario = $this->scenario;
+
+        if (!$model->delete()) {
+            throw new SaveException($model);
+        }
+
+        $message = Yii::t('app', ':itemType with label ":itemLabel" (id :id) removed', array(':itemType' => ItemTypes::label(get_class($model), 1), ':itemLabel' => $model->itemLabel, ':id' => $model->id));
+        Yii::app()->user->setFlash('success', $message);
+        $this->redirect(array('browse'));
+
+        // TODO: Use interactive delete in case foreign constraints require manual selection of items to remove vs disconnect
+        //$this->render('vendor.neam.yii-workflow-ui.themes.simplicity.views._item.remove', array('model' => $model));
     }
 
     public function actionReplace($id)
