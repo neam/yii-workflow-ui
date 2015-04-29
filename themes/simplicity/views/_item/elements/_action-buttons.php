@@ -233,7 +233,7 @@
                         'size' => TbHtml::BUTTON_SIZE_MINI,
                         'url' => array(
                             'removeFromGroup',
-                            'nodeId' => $model->node_id,
+                            'nodeId' => $model->ensureNode()->id,
                             'modelId' => $model->id,
                             'group' => $groupName,
                             'returnUrl' => Yii::app()->request->url,
@@ -248,7 +248,7 @@
                         'size' => TbHtml::BUTTON_SIZE_MINI,
                         'url' => array(
                             'addToGroup',
-                            'nodeId' => $model->node_id,
+                            'nodeId' => $model->ensureNode()->id,
                             'modelId' => $model->id,
                             'group' => $groupName,
                             'returnUrl' => Yii::app()->request->url,

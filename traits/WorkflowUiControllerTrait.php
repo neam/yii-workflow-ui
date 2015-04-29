@@ -908,7 +908,7 @@ trait WorkflowUiControllerTrait
 
             // clone relations part 1 - we want the cloned object to be related to the same items - outNodes
             // however we do not want other objects to relate to the cloned object, so we skip inNodes
-            $cloneNode = $clone->node();
+            $cloneNode = $clone->ensureNode();
             foreach ($model->outNodes as $outNode) {
                 $edge = new Edge;
                 $edge->from_node_id = $cloneNode->id;
@@ -1147,7 +1147,7 @@ trait WorkflowUiControllerTrait
     private function addEdges($fromid, $toids, $relation)
     {
         $from_model = $this->loadModel($fromid);
-        $from_node_id = $from_model->node()->id;
+        $from_node_id = $from_model->ensureNode()->id;
 
         foreach ($toids as $to_node_id) {
             $this->addEdge($from_node_id, $to_node_id, $relation);
