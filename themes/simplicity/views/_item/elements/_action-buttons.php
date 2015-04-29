@@ -223,6 +223,9 @@
             )
         ); ?>
     </div>
+    <?php
+        if (in_array(get_class($model), array_keys(ItemTypes::where('is_access_restricted')))):
+    ?>
     <div class="btn-group">
         <?php foreach (Yii::app()->user->getGroups() as $groupId => $groupName): ?>
             <?php if ($model->belongsToGroup($groupName)): ?>
@@ -258,4 +261,7 @@
             <?php endif; ?>
         <?php endforeach; ?>
     </div>
+    <?php
+    endif;
+    ?>
 </div>
