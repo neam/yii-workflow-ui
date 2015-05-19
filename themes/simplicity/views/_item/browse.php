@@ -27,6 +27,7 @@ if (empty($this->menu)) {
             'pager' => array(
                 'class' => '\TbPager',
                 'size' => TbHtml::PAGINATION_SIZE_SMALL,
+                'maxButtonCount' => 20,
                 'hideFirstAndLast' => true,
             ),
         )
