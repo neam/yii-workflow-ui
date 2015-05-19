@@ -12,8 +12,8 @@ $controllerId = lcfirst($this->modelClass);
             <?php endif; ?>
         </div>
         <div class="btn-group">
-            <?php echo CHtml::link('<i class="glyphicon-view"></i> ' . Yii::t('model', 'View {model} in pages-desktop', array('{model}' => Yii::t('model', 'Item'))), PAGES_DESKTOP_BASE_URL . '/' . /*$data->compositionType->ref . '/' .*/
-                $data->node_id, array('class' => 'btn', 'target' => '_blank')); ?>
+            <?php echo CHtml::link('<i class="glyphicon-view"></i> ' . Yii::t('model', 'View {model} in pages-desktop', array('{model}' => Yii::t('model', 'Item'))), PAGES_DESKTOP_BASE_URL . '/' .
+                $data->ensureNode()->id, array('class' => 'btn', 'target' => '_blank')); ?>
         </div>
         <div class="btn-group">
             <?php echo CHtml::link('<i class="glyphicon-view"></i> ' . Yii::t('model', 'View {model} in public REST API', array('{model}' => Yii::t('model', 'Item'))), '/api/v1/item/' . $data->node_id, array('class' => 'btn', 'target' => '_blank')); ?>
